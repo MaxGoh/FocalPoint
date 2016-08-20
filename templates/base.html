@@ -24,11 +24,28 @@
             <p class="navbar-text navbar-left"><a href="#" class="navbar-link">Contact</a></p>
 
             {% if user.is_authenticated %}
-                <button type="button" class="btn btn-primary navbar-btn navbar-right" onclick="window.location.href={% url 'logout' %}">Sign out</button>
-                <p class="navbar-text navbar-right">Signed in as <a href="{% url 'profile' %}" class="navbar-link"><b>{{ user }}</b></a></p>
+                <div class="dropdown navbar-right navbar-btn">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Settings
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li style="text-align:center">Sign in as <b>{{ user.username }}</b></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{% url 'profile' %}">Overview</a></li>
+                        <li><a href="#">Projects</a></li>
+                        <li><a href="#">Settings</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{% url 'logout' %}"><b>Sign out</b></a></li>
+                    </ul>
+                </div>
             {% else %}
+                <!--
                 <button type="button" class="btn btn-primary navbar-btn navbar-right" onclick="window.location.href={% url 'login' %}">Sign in</button>
                 <button type="button" class="btn btn-primary navbar-btn navbar-right" onclick="window.location.href={% url 'register' %}">Register</button>
+                -->
+                <p class="navbar-text navbar-right"><a href="{% url 'login' %}" class="navbar-link">Sign in</a></p>
+                <p class="navbar-text navbar-right"><a href="{% url 'register' %}" class="navbar-link">Register</a></p>
             {% endif %}
         </div>
     </nav>
