@@ -1,29 +1,21 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib import messages
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.views import login as django_login
 
 from django.conf import settings
-from .forms import UserCreationForm
+from .forms import loginForm
 
-def login_view(request):
+def login_view(request, *args, **kwargs):
+    response = django_login(request, *args, **kwargs)
+    if isinstance(response, HttpResponseRedirect):
+        messages.success(request, 'You have successfully logged in.')
+    return response
 
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(username=username, password=password)
-    if user is not None:
-        login(request, user)
-        # Redirect to a success page
-    else:
-        # Invalid
-        # Return an 'invalid login' error message.
-        return HttpResponse("Invalid Login")
-
-def logout_view(request):
-    logout(request)
-    # Redirect to login page
-    return render(request, settings.LOGIN_URL)
 
 def register_new(request):
     form = UserCreationForm()
@@ -32,7 +24,16 @@ def register_new(request):
         if form.is_valid():
             user = form.save(commit=False)
             user.save()
+            messages.success(request, 'Your account has been created.')
             return redirect('home')
     else:
         form = UserCreationForm()
     return render(request, 'accounts/register.html', {'form': form})
+
+@login_required
+def logout_view(request):
+    logout(request)
+    messages.success(request, 'You have successfully logged out.')
+    return HttpResponseRedirect('/home/')
+
+

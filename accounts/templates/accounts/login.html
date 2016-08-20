@@ -6,11 +6,13 @@
         <h1>Login</h1>
     </div>
 
-
 {% if form.errors %}
 
 <div class="alert alert-danger" role="alert">
     <p>Your username and password didn't match. Please try again.</p>
+    {{ fields.error }}
+    {{ form.non_field_errors }}
+    {{ form.errors }}
 </div>
 
 {% endif %}

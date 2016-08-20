@@ -4,8 +4,16 @@
 
 {% block content %}
 
-    <html>
-    <p>You are logged out. To log in again, click <a href="/login/">here</a>.</p>
-    </html>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+            </div>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    Logout
 
 {% endblock %}
