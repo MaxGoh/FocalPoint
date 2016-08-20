@@ -55,7 +55,7 @@ MIDDLEWARE_CLASSES = [
 
 ROOT_URLCONF = 'pomodoro.urls'
 LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/profile'
+LOGIN_REDIRECT_URL = '/profile/'
 
 TEMPLATES = [
     {

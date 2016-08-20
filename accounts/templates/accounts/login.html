@@ -15,7 +15,9 @@
     <p>Your account doesn't have access to this page. To proceed,
     please login with an account that has access.</p>
     {% else %}
-    <p>Please login to see this page.</p>
+        <div class="alert alert-danger" role="alert">
+            <p>Please login to see this page.</p>
+        </div>
     {% endif %}
 {% endif %}
 
@@ -33,6 +35,6 @@
 </table>
 
 <input class="btn btn-primary" type="submit" value="login" />
-<input type="hidden" name="next" value="{{ logout }}" />
+<input type="hidden" name="next" value="{{ next }}" />
 </form>
 {% endblock %}

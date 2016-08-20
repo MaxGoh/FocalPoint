@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse
 from django.contrib.auth.decorators import login_required
 
-def default_home_view(request):
+def home_view(request):
     return render(request, 'pages/home.html')
 
 @login_required(login_url="/login/")

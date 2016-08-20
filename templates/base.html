@@ -25,7 +25,7 @@
 
             {% if user.is_authenticated %}
                 <button type="button" class="btn btn-primary navbar-btn navbar-right" onclick="window.location.href={% url 'logout' %}">Sign out</button>
-                <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link"><b>{{ user }}</b></a></p>
+                <p class="navbar-text navbar-right">Signed in as <a href="{% url 'profile' %}" class="navbar-link"><b>{{ user }}</b></a></p>
             {% else %}
                 <button type="button" class="btn btn-primary navbar-btn navbar-right" onclick="window.location.href={% url 'login' %}">Sign in</button>
             {% endif %}
