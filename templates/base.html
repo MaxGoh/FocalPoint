@@ -15,7 +15,7 @@
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
             <div class="navbar-header">
-              <a class="navbar-brand" href="#">
+              <a class="navbar-brand" href="{% url 'home' %}">
                 <img alt="Brand" src="https://cdn2.iconfinder.com/data/icons/bright-food-products/512/tomato-512.png">
               </a>
             </div>
@@ -24,6 +24,7 @@
             <p class="navbar-text navbar-left"><a href="#" class="navbar-link">Contact</a></p>
 
             {% if user.is_authenticated %}
+                <p class="navbar-text navbar-right"><a href="#"><span class="glyphicon glyphicon-plus"></span> <b>New Project</b></a></p>
                 <div class="dropdown navbar-right navbar-btn">
                     <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         Settings
@@ -40,10 +41,6 @@
                     </ul>
                 </div>
             {% else %}
-                <!--
-                <button type="button" class="btn btn-primary navbar-btn navbar-right" onclick="window.location.href={% url 'login' %}">Sign in</button>
-                <button type="button" class="btn btn-primary navbar-btn navbar-right" onclick="window.location.href={% url 'register' %}">Register</button>
-                -->
                 <p class="navbar-text navbar-right"><a href="{% url 'login' %}" class="navbar-link">Sign in</a></p>
                 <p class="navbar-text navbar-right"><a href="{% url 'register' %}" class="navbar-link">Register</a></p>
             {% endif %}

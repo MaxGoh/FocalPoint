@@ -25,7 +25,7 @@ def register_new(request):
             user = form.save(commit=False)
             user.save()
             messages.success(request, 'Your account has been created.')
-            return redirect('home')
+            return redirect('login')
     else:
         form = UserCreationForm()
     return render(request, 'accounts/register.html', {'form': form})
