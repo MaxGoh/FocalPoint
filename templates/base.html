@@ -28,6 +28,7 @@
                 <p class="navbar-text navbar-right">Signed in as <a href="{% url 'profile' %}" class="navbar-link"><b>{{ user }}</b></a></p>
             {% else %}
                 <button type="button" class="btn btn-primary navbar-btn navbar-right" onclick="window.location.href={% url 'login' %}">Sign in</button>
+                <button type="button" class="btn btn-primary navbar-btn navbar-right" onclick="window.location.href={% url 'register' %}">Register</button>
             {% endif %}
         </div>
     </nav>

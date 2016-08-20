@@ -1,7 +1,11 @@
 from django.shortcuts import render, HttpResponse
 from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+
 from django.conf import settings
+from .forms import UserCreationForm
 
 def login_view(request):
 
@@ -21,3 +25,14 @@ def logout_view(request):
     # Redirect to login page
     return render(request, settings.LOGIN_URL)
 
+def register_new(request):
+    form = UserCreationForm()
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.save()
+            return redirect('home')
+    else:
+        form = UserCreationForm()
+    return render(request, 'accounts/register.html', {'form': form})
