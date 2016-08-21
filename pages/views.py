@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 def home_view(request):
     return render(request, 'pages/home.html')
 
+def about_view(request):
+    return render(request, 'pages/about.html')
 
 @login_required(login_url="/login/")
 def profile_view(request):

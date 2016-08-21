@@ -1,18 +1,70 @@
 {% extends "base.html" %}
+{% load widget_tweaks %}
+{% load static %}
 
-{% block title %}Pomodoro | Register{% endblock %}
+{% block title %}Login{% endblock %}
+
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/account.css' %}">
+{% endblock %}
 
 {% block content %}
 
-    <div class="page-header">
-        <h1>Register</h1>
-    </div>
-
-
-    <form method="POST" class="post-form">
+    <video id="Video" class="bgvid back" autoplay="false" muted="muted" preload="auto" loop>
+        <source src="{% static 'videos/register_video.mp4' %}" type="video/mp4">
+    </video>
+     <div class="inner-container" style="top:calc(50vh - 250px); height: 600px;">
+    <div class="box">
+        <h1><b>Register</b></h1>
+        {% if form.errors %}
+            <p class="login-error">Please check your input</p>
+        {% endif %}
+        <form method="post" action="{% url 'register' %}">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-primary">Save</button>
-    </form>
+        <table align="center">
+        <tr>
+            <td>{{ form.username|append_attr:"placeholder:Username" }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.email|append_attr:"placeholder:E-mail" }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.password1|append_attr:"placeholder:Password" }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.password2|append_attr:"placeholder:Confirmation Password" }}</td>
+        </tr>
+        </table>
+            <button class="btn" type="submit" value="register">Register</button>
+            <input type="hidden" name="next" value="{{ next }}" />
+        </form>
+      <p>Already have a account? <a href="{% url 'login' %}">Sign in</a></p>
+    </div>
+  </div>
+</div>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+            </div>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+        <div class="alert alert-danger" role="alert">
+            <p>Please login to see this page.</p>
+        </div>
+    {% endif %}
+{% endif %}
+
+
 
 {% endblock %}
