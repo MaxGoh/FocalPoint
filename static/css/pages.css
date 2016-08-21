@@ -2,25 +2,12 @@ html, body {
   background: #1a1a1a;
   padding:0;
   margin:0;
+  font-family: 'Ubuntu Mono', monospace;
+  color: whitesmoke;
 }
 @media (max-width: 979px) {
   html, body {
   }
-}
-
-.vid-container{
-  position:relative;
-  height:100vh;
-  overflow:hidden;
-  -webkit-filter:blur(10px);
-  -ms-filter: blur(10px);
-  -o-filter: blur(10px);
-  filter:blur(10px);
-}
-.bgvid.back {
-  position: fixed; right: 0; bottom: 0; top: 0;
-  min-width: 100%; min-height: 100%;
-  width: auto; height: auto; z-index: -100;
 }
 
 .navbar {
@@ -31,3 +18,38 @@ html, body {
   margin-bottom: 0;
 }
 
+div.header_text {
+  text-align: center;
+  color: sandybrown;
+    vertical-align: middle;
+}
+
+div.header_text > h1 {
+  font-family: 'Black Ops One', cursive;
+}
+
+.navbar-brand {
+  color: whitesmoke;
+  font-family: 'Black Ops One', cursive;
+}
+
+.section-header {
+    background-image: url('../images/home_wallpaper.jpeg');
+    height: 80vh;
+}
+
+.section-2 {
+    padding-top: 20px;
+}
+
+.parallax {
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.info {
+    text-align: center;
+}

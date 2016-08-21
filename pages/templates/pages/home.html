@@ -4,9 +4,47 @@
 {% block title %}TaskHive | Home{% endblock %}
 
 {% block content %}
-
-    <video class="bgvid back" autoplay="true" muted="muted" preload="auto" loop>
-        <source src="{% static 'videos/home_video.mov' %}" type="video/mp4">
-    </video>
-
+    <section class="section-header parallax">
+        <div class="container">
+            <table>
+                <tr>
+                    <h1>Task Hive</h1>
+                </tr>
+                <tr>
+                    <h2>Start being in control of your projects</h2>
+                </tr>
+                <tr>
+                    <button class="btn btn-danger">Get Started</button>
+                </tr>
+            </table>
+        </div>
+    </section>
+    <section class="section section-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-1 col-md-3">
+                    <div class="productivity info">
+                        <h1><b>Tracking</b></h1>
+                        <h4>Keep track of your work</h4>
+                        <span class="glyphicon glyphicon-time"></span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="time info">
+                        <h1><b>Time</b></h1>
+                        <h4>Manage your time better</h4>
+                        <span class="glyphicon glyphicon-time"></span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="control info">
+                        <h1><b>Control</b></h1>
+                        <h4>Be in control</h4>
+                        <span class="glyphicon glyphicon-time"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div style="height: 2000px;"></div>
 {% endblock %}
