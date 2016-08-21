@@ -1,28 +1,12 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}Pomdoro | Home{% endblock %}
+{% block title %}TaskHive | Home{% endblock %}
 
 {% block content %}
 
-    <div class="page-header">
-        <h1>Home</h1>
-    </div>
-
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-            <div class="alert alert-success" role="alert">
-                <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
-            </div>
-        {% endfor %}
-    </ul>
-    {% endif %}
-
-    <div class="jumbotron">
-        <blockquote>
-            <p>The Pomodoro Technique can help you power through distractions, hyper-focus, and get things done in short bursts, while taking frequent breaks to come up for air and relax. Best of all, it's easy. If you have a busy job where you're expected to produce, it's a great way to get through your tasks. Let's break it down and see how you can apply it to your work.</p>
-        </blockquote>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
-    </div>
+    <video class="bgvid back" autoplay="true" muted="muted" preload="auto" loop>
+        <source src="{% static 'videos/home_video.mov' %}" type="video/mp4">
+    </video>
 
 {% endblock %}
