@@ -42,6 +42,16 @@ div.header_text > h1 {
     padding-top: 20px;
 }
 
+.section-3 {
+    background: darkslategrey;
+}
+
+footer {
+    height: 20vh;
+    width: 100vw;
+    background-color: saddlebrown;
+}
+
 .parallax {
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
