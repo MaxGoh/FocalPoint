@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'accounts',
     'pages',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE_CLASSES = [

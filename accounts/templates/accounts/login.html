@@ -1,10 +1,31 @@
 {% extends "base.html" %}
+{% load widget_tweaks %}
 
 {% block content %}
 
-    <div class="page-header">
-        <h1>Login</h1>
+    <video id="Video1" class="bgvid back" autoplay="false" muted="muted" preload="auto" loop>
+        <source src="http://shortcodelic1.manuelmasiacsasi.netdna-cdn.com/themes/geode/wp-content/uploads/2014/04/milky-way-river-1280hd.mp4.mp4" type="video/mp4">
+    </video>
+     <div class="inner-container">
+    <div class="box">
+      <h1>Login</h1>
+        <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <table align="center">
+        <tr>
+            <td>{{ form.username|append_attr:"placeholder:Username" }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.password|append_attr:"placeholder:Password" }}</td>
+        </tr>
+        </table>
+            <input class="btn-primary" type="submit" value="login" />
+            <input type="hidden" name="next" value="{{ next }}" />
+        </form>
+      <p>Not a member? <span>Sign Up</span></p>
     </div>
+  </div>
+</div>
 
     {% if messages %}
     <ul class="messages">
@@ -38,20 +59,6 @@
     {% endif %}
 {% endif %}
 
-<form method="post" action="{% url 'login' %}">
-{% csrf_token %}
-<table>
-<tr>
-    <td>{{ form.username.label_tag }}</td>
-    <td>{{ form.username }}</td>
-</tr>
-<tr>
-    <td>{{ form.password.label_tag }}</td>
-    <td>{{ form.password }}</td>
-</tr>
-</table>
 
-<input class="btn btn-primary" type="submit" value="login" />
-<input type="hidden" name="next" value="{{ next }}" />
-</form>
+
 {% endblock %}

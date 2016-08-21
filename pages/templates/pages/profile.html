@@ -1,12 +1,9 @@
-{% extends "base.html" %}
+{% extends "dashboard_base.html" %}
 
 {% block title %}Pomdoro | {{ user }} | Profile{% endblock %}
 
 {% block content %}
 
-    <div class="page-header">
-        <h1>Profile</h1>
-    </div>
 
     {% if messages %}
     <ul class="messages">
@@ -18,9 +15,30 @@
     </ul>
     {% endif %}
 
-    <span class="label label-success">Home</span>
-    {{ user.email }}
-    {{ user }}
-    Click <a href="{% url 'logout' %}">here</a> to logout
+    <div class="container">
+        <nav>
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="#">Profile</a></li>
+                <li role="presentation"><a href="#">Messages</a></li>
+                <button class="btn btn-defult pull-right"><span class="glyphicon glyphicon-pencil"></span> Edit profile</button>
+            </ul>
+        </nav>
+        <div class="profile_container row">
+            <div class="col-md-4 col-lg-offset-2">
+                <img alt="profile" class="img-rounded" src="https://cdn0.vox-cdn.com/images/verge/default-avatar.v9899025.gif">
+            </div>
+
+            <div class="col-md-4">
+                <ul class="profile_information">
+                    <li><label>Name: {{ user }}</label></li>
+                    <li><label>Email: {{ user.email }}</label></li>
+                    <li><label>Gender:</label></li>
+                    <li><label>Country:</label></li>
+                    <li><label>Join Date:</label></li>
+                </ul>
+             </div>
+        </div>
+    </div>
+
 
 {% endblock %}

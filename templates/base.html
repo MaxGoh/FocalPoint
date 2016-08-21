@@ -4,6 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
@@ -12,7 +13,7 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
               <a class="navbar-brand" href="{% url 'home' %}">
@@ -37,7 +38,7 @@
                         <li><a href="#">Projects</a></li>
                         <li><a href="#">Settings</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="{% url 'logout' %}"><b>Sign out</b></a></li>
+                        <li><a href="{% url 'logout' %}"><b><span class="glyphicon glyphicon-off"></span> Sign out</b></a></li>
                     </ul>
                 </div>
             {% else %}
@@ -47,9 +48,34 @@
         </div>
     </nav>
 
-    <div class="container">
-        {% block content %}
-        {% endblock %}
+    <div id="particles-js">
+        <div class="container">
+
+            {% block content %}
+            {% endblock %}
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+        <script src="{% static 'javascript/app.js' %}"></script>
+        <script>
+            var count_particles, stats, update;
+            stats = new Stats;
+            stats.setMode(0);
+            stats.domElement.style.position = 'absolute';
+            stats.domElement.style.left = '0px';
+            stats.domElement.style.top = '0px';
+            document.body.appendChild(stats.domElement);
+            count_particles = document.querySelector('.js-count-particles');
+            update = function() {
+            stats.begin();
+            stats.end();
+            if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) {
+                count_particles.innerText = window.pJSDom[0].pJS.particles.array.length;
+            }
+            requestAnimationFrame(update);
+            };
+            requestAnimationFrame(update);
+        </script>
     </div>
 </body>
 </html>

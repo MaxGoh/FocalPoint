@@ -1,14 +1,10 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.forms import AuthenticationForm
-
-class loginForm(forms.Form):
-    username = forms.CharField(required=True, label="Username", max_length=25)
-    password = forms.CharField(required=True, label="Password", widget=forms.PasswordInput())
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 class UserCreateForm(UserCreationForm):
-    email = forms.EmailField(required=True)
+    username = forms.CharField(required=True, widget=forms.TextInput({ "placeholder": "Text!"}))
+    email = forms.EmailField(required=True, widget=forms.TextInput({ "placeholder": "Text!"}))
 
     class Meta:
         model = User
@@ -20,3 +16,7 @@ class UserCreateForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+class UserLoginForm(AuthenticationForm):
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'span2','placeholder': 'Email'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'span2','placeholder':'Password'}))

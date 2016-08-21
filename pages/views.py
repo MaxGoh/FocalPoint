@@ -8,3 +8,7 @@ def home_view(request):
 @login_required(login_url="/login/")
 def profile_view(request):
     return render(request, 'pages/profile.html')
+
+@login_required(login_url="/login/")
+def dashboard_view(request):
+    return render(request, 'pages/dashboard.html')

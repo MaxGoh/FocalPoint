@@ -1,0 +1,12 @@
+.profile_container {
+    margin-top: 25px;
+}
+
+div.profile {
+    display: inline-block;
+}
+
+ul.profile_information {
+    font-size: 1.2em;
+    list-style: none;
+}

@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import login as django_login
 
 from django.conf import settings
-from .forms import loginForm
+from .forms import UserCreateForm
 
 def login_view(request, *args, **kwargs):
     response = django_login(request, *args, **kwargs)
@@ -16,18 +16,16 @@ def login_view(request, *args, **kwargs):
         messages.success(request, 'You have successfully logged in.')
     return response
 
-
 def register_new(request):
-    form = UserCreationForm()
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = UserCreateForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
             user.save()
             messages.success(request, 'Your account has been created.')
             return redirect('login')
     else:
-        form = UserCreationForm()
+        form = UserCreateForm()
     return render(request, 'accounts/register.html', {'form': form})
 
 @login_required
