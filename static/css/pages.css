@@ -1,0 +1,19 @@
+html, body {
+  padding-top: 60px;
+  background: #1a1a1a;
+}
+@media (max-width: 979px) {
+  html, body {
+    padding-top: 0px;
+  }
+}
+
+.navbar-brand {
+  padding: 0px; /* firefox bug fix */
+}
+.navbar-brand>img {
+  height: 100%;
+  padding: 15px; /* firefox bug fix */
+  width: auto;
+}
+

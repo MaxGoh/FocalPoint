@@ -11,14 +11,10 @@
 {% block menu %}
     <div class="container">
         <div class="parent2">
-            {% if user.is_authenticated %}
-            <a href="{% url 'profile' %}"><div class="test1"><i class="fa fa-user fa-2x"></i></div></a>
-            {% else %}
             <a href="{% url 'login' %}"><div class="test1"><i class="fa fa-sign-in fa-2x"></i></div></a>
-            {% endif %}
-            <div class="test2"><i class="fa fa-info-circle fa-2x"></i></div>
-            <div class="test3"><i class="fa fa-envelope-o fa-2x"></i></div>
-            <div class="test4"><i class="fa fa-home fa-2x"></i></div>
+            <a href="{% url 'about' %}"><div class="test2"><i class="fa fa-info-circle fa-2x"></i></div></a>
+            <a href="{% url 'about' %}"><div class="test3"><i class="fa fa-envelope-o fa-2x"></i></div></a>
+            <a href="{% url 'home' %}"><div class="test4"><i class="fa fa-home fa-2x"></i></div></a>
             <div class="mask2"><i class="fa fa-home fa-3x"></i></div>
         </div>
 
