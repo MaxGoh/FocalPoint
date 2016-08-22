@@ -13,10 +13,15 @@
         <li class="{% if navbar == 'home' %}active{% endif %}"><a href="{% url 'home' %}">Home</a></li>
         <li class="{% if navbar == 'about' %}active{% endif %}"><a href="{% url 'about' %}">About</a></li>
           <li class="{% if navbar == 'contact' %}active{% endif %}"><a href="{% url 'contact' %}">Contact</a></li>
+          <li class="{% if navbar == 'faq' %}active{% endif %}"><a href="{% url 'faq' %}">FAQ</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="url{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="url{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        {% if user.is_authenticated %}
+
+        {% else %}
+          <li><a href="url{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li><a href="url{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        {% endif %}
       </ul>
     </div>
   </div>

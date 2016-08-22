@@ -10,6 +10,9 @@ def about_view(request):
 def contact_view(request):
     return render(request, 'pages/contact.html', {'navbar': 'contact'})
 
+def faq_view(request):
+    return render(request, 'pages/faq.html', {'navbar': 'faq'})
+
 @login_required(login_url="/login/")
 def profile_view(request):
     return render(request, 'pages/profile.html')

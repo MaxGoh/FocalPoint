@@ -16,4 +16,8 @@
 - Gives an overview of how much time you have spent on single/multiple projects
 - Daily|Weekly|Monthly Charts
 
+## TODOs
+[ ] Settings Button
+[ ] Profile Page
+    [ ] Avatar
 ###### Just throwing whatever's in my mind
