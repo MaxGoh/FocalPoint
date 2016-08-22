@@ -32,6 +32,6 @@ def register_new(request):
 def logout_view(request):
     logout(request)
     messages.success(request, 'You have successfully logged out.')
-    return HttpResponseRedirect('/home/')
+    return HttpResponseRedirect('/')
 
 

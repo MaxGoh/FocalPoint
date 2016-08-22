@@ -34,8 +34,16 @@ div.header_text > h1 {
 }
 
 .section-header {
-    background-image: url('../images/home_wallpaper.jpeg');
+    background-image: linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ), url('../images/home_wallpaper.jpeg');
     height: 80vh;
+    text-align: center;
+}
+
+.table-container {
+    text-align: center;
 }
 
 .section-2 {
@@ -62,4 +70,29 @@ footer {
 
 .info {
     text-align: center;
+}
+
+.shout {
+    padding-top: 220px;
+}
+
+.btn-get-started {
+    margin-top: 25px;
+}
+
+.red {
+  background-color: #e74c3c;
+  box-shadow: 0px 5px 0px 0px #CE3323;
+    color: whitesmoke;
+}
+
+.red:hover {
+  background-color: #FF6656;
+}
+
+table.profile-table tr td {
+  border-right: 10px solid transparent;
+  -webkit-background-clip: padding;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
 }

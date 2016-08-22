@@ -1,0 +1,23 @@
+<nav class="navbar navbar-inverse">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'home' %}" style="color: whitesmoke"><b>TaskHive</b></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="{% if navbar == 'home' %}active{% endif %}"><a href="{% url 'home' %}">Home</a></li>
+        <li class="{% if navbar == 'about' %}active{% endif %}"><a href="{% url 'about' %}">About</a></li>
+          <li class="{% if navbar == 'contact' %}active{% endif %}"><a href="{% url 'contact' %}">Contact</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="url{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="url{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
