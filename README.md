@@ -17,7 +17,7 @@
 - Daily|Weekly|Monthly Charts
 
 ## TODOs
-[ ] Settings Button
-[ ] Profile Page
-    [ ] Avatar
+- Settings Button
+- Profile Page
+    - Avatar
 ###### Just throwing whatever's in my mind
