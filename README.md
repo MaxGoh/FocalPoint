@@ -20,4 +20,5 @@
 - Settings Button
 - Profile Page
     - Avatar
+
 ###### Just throwing whatever's in my mind
