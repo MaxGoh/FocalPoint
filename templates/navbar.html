@@ -19,13 +19,13 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {% if user.is_authenticated %}
-            <div class="dropdown navbar-btn navbar-text">
+            <div class="dropdown navbar-text" style="margin-bottom: 12px;">
               <button class="btn-transparent dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" aria-label="View your profile and more">
-                {% avatar user 16 class="img-circle img-responsive" id="user_avatar" %}
+                {% avatar user 20 class="img-circle img-responsive" id="user_avatar" %}
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><a href="#">Signed in as <b>{{ user|title }}</b></a></li>
+                <li class="text-center">Signed in as <b>{{ user|title }}</b></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="{% url 'profile' %}">Your Profile</a></li>
                 <li><a href="#">Your Dashboard</a></li>
