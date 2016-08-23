@@ -16,9 +16,16 @@
 - Gives an overview of how much time you have spent on single/multiple projects
 - Daily|Weekly|Monthly Charts
 
-## TODOs
-- Settings Button
-- Profile Page
-    - Avatar
+### Tech dependencies
+- Python
+- django-avatar
+- widget_tweaks
+
+### TODOs
+[x] Settings Button
+[x] Profile Page
+
+### Latest Updates
+Created new app 'projects'
 
 ###### Just throwing whatever's in my mind

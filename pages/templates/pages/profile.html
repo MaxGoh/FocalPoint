@@ -7,32 +7,34 @@
 
     <div class="container">
         <header class="clearfix">
-            <h1>Profile <span>Your personal dashboard</span></h1>
+            <h1>Profile <span>Your personal folder</span></h1>
         </header>
-        <div class="main">
-            <div class="content">
-                <a href="{% url 'avatar_change' %}">Change your avatar</a>
-                {% avatar user 65 class="img-circle img-responsive" id="user_avatar" %}
 
+        <div class="row" style="padding-top: 20px;">
+            <div class="avatar col-lg-offset-2 col-lg-4">
+                <a href="{% url 'avatar_change' %}">{% avatar user 205 class="img-circle img-responsive" id="user_avatar" %}</a>
+                <a class="btn btn-get-started red" href="{% url 'avatar_change' %}">Edit your profile</a>
             </div>
-            <div class="side">
-                <nav class="dr-menu">
-                    <div class="dr-trigger"><span class="dr-icon dr-icon-menu"></span><a class="dr-label">Account</a></div>
-                    <ul>
-                        {% if user.is_authenticated %}
-                            <li><a class="dr-icon dr-icon-user" href="#">{{ user|title }}</a></li>
-                        {% else %}
-                            <li><a class="dr-icon dr-icon-user" href="#">Jason Quinn</a></li>
-                        {% endif %}
-                        <li><a class="dr-icon dr-icon-camera" href="#">Videos</a></li>
-                        <li><a class="dr-icon dr-icon-heart" href="#">Favorites</a></li>
-                        <li><a class="dr-icon dr-icon-bullhorn" href="#">Subscriptions</a></li>
-                        <li><a class="dr-icon dr-icon-download" href="#">Downloads</a></li>
-                        <li><a class="dr-icon dr-icon-settings" href="#">Settings</a></li>
-                        <li><a class="dr-icon dr-icon-switch" href="{% url 'logout' %}">Logout</a></li>
-                    </ul>
-                </nav>
+            <div class="profile-information col-lg-4">
+                <table class="table-container profile-table">
+                    <tr>
+                        <td>Username </td>
+                        <td>{{ user }}</td>
+                    </tr>
+                    <tr>
+                        <td>First Name</td>
+                        <td>{{ user.first_name|title }}</td>
+                    </tr>
+                    <tr>
+                        <td>Last Name</td>
+                        <td>{{ user.last_name|title }}</td>
+                    </tr>
+                    <tr>
+                        <td>Email </td>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                </table>
             </div>
         </div>
-    </div><!-- /container -->
+    </div>
 {% endblock %}

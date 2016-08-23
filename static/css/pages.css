@@ -43,7 +43,7 @@ div.header_text > h1 {
 }
 
 .table-container {
-    text-align: center;
+    text-align: left;
 }
 
 .section-2 {
@@ -88,6 +88,10 @@ footer {
 
 .red:hover {
   background-color: #FF6656;
+}
+
+table.profile-table tr td {
+   padding-top: 10px;
 }
 
 table.profile-table tr td {
