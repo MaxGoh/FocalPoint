@@ -96,3 +96,9 @@ table.profile-table tr td {
   -moz-background-clip: padding;
   background-clip: padding-box;
 }
+
+.btn-transparent {
+    background: transparent;
+    outline: 0;
+    border: 0;
+}

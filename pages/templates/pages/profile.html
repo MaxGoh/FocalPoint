@@ -1,54 +1,38 @@
 {% extends "base.html" %}
+{% load avatar_tags %}
 
 {% block title %}Pomdoro | {{ user|title }} | Profile{% endblock %}
 
 {% block content %}
 
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-            <script>
-                toastr["success"]("{{ message }}", "Hello " + "{{ user|title }}");
-            </script>
-        {% endfor %}
-    </ul>
-    {% endif %}
-
     <div class="container">
-        <nav>
-            <ul class="nav nav-tabs">
-                <li role="presentation" class="active"><a href="#">Profile</a></li>
-                <li role="presentation"><a href="#">Messages</a></li>
-                <button class="btn btn-defult pull-right"><span class="glyphicon glyphicon-pencil"></span> Edit profile</button>
-            </ul>
-        </nav>
-        <div class="profile_container row">
-            <div class="col-md-4 col-lg-offset-2">
-<!--                <img alt="profile" class="img-rounded" src="https://cdn0.vox-cdn.com/images/verge/default-avatar.v9899025.gif">-->
-                <img src="{{ user.avatar }}"/>
-            </div>
+        <header class="clearfix">
+            <h1>Profile <span>Your personal dashboard</span></h1>
+        </header>
+        <div class="main">
+            <div class="content">
+                <a href="{% url 'avatar_change' %}">Change your avatar</a>
+                {% avatar user 65 class="img-circle img-responsive" id="user_avatar" %}
 
-            <div class="profile">
-                <table class="profile-table">
-                    <tr>
-                        <td>Username</td>
-                        <td>{{ user }}</td>
-                    </tr>
-                    <tr>
-                        <td>Email</td>
-                        <td>{{ user.email }}</td>
-                    </tr>
-                    <tr>
-                        <td>Country</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Address</td>
-                    </tr>
-                </table>
             </div>
-
+            <div class="side">
+                <nav class="dr-menu">
+                    <div class="dr-trigger"><span class="dr-icon dr-icon-menu"></span><a class="dr-label">Account</a></div>
+                    <ul>
+                        {% if user.is_authenticated %}
+                            <li><a class="dr-icon dr-icon-user" href="#">{{ user|title }}</a></li>
+                        {% else %}
+                            <li><a class="dr-icon dr-icon-user" href="#">Jason Quinn</a></li>
+                        {% endif %}
+                        <li><a class="dr-icon dr-icon-camera" href="#">Videos</a></li>
+                        <li><a class="dr-icon dr-icon-heart" href="#">Favorites</a></li>
+                        <li><a class="dr-icon dr-icon-bullhorn" href="#">Subscriptions</a></li>
+                        <li><a class="dr-icon dr-icon-download" href="#">Downloads</a></li>
+                        <li><a class="dr-icon dr-icon-settings" href="#">Settings</a></li>
+                        <li><a class="dr-icon dr-icon-switch" href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
-    </div>
-
+    </div><!-- /container -->
 {% endblock %}
