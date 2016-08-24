@@ -106,3 +106,12 @@ table.profile-table tr td {
     outline: 0;
     border: 0;
 }
+
+input {
+    color: darkslategrey;
+}
+
+select {
+    color: darkslategrey;
+}
+

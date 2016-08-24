@@ -32,7 +32,7 @@
                 <li><a href="#">Something else here</a></li>
               </ul>
             </div>
-            <li><a href=""><span class="glyphicon glyphicon-plus"></span> New Task</a></li>
+            <li><a href="{% url 'add_task' %}"><span class="glyphicon glyphicon-plus"></span> New Task</a></li>
             <li><a href="url{% url 'logout' %}"><span class="glyphicon glyphicon-off"></span> Sign Out</a></li>
         {% else %}
           <li><a href="url{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>

@@ -5,7 +5,18 @@
 
 {% block content %}
 
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <script>
+                toastr.success(message)
+            </script>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
     <div class="container">
+
         <header class="clearfix">
             <h1>Profile <span>Your personal folder</span></h1>
         </header>
@@ -32,6 +43,14 @@
                     <tr>
                         <td>Email </td>
                         <td>{{ user.email }}</td>
+                    </tr>
+                    <tr>
+                        <td>Last Login Date</td>
+                        <td>{{ user.last_login }}</td>
+                    </tr>
+                    <tr>
+                        <td>Joined Date</td>
+                        <td>{{ user.date_joined|date }}</td>
                     </tr>
                 </table>
             </div>

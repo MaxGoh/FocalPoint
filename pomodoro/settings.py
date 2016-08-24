@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'accounts',
     'pages',
+    'tasks',
     'widget_tweaks',
     'avatar',
 ]
