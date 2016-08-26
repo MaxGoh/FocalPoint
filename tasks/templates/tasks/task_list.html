@@ -8,8 +8,10 @@
         <table>
         {% for task in object_list  %}
             <tr>
-                <td>{{ request.user }}</td>
-                <td>{{ task.name}}</td>
+                <td>{{ task.created_by }}</td>
+                <td>{{ task.id }}</td>
+                <td>{{ task.name }}</td>
+                <td>{{ task.description }}</td>
             </tr>
         {% endfor %}
         </table>
