@@ -6,8 +6,17 @@
             <h1>Task List</h1>
         </header>
         <table>
-        {% for task in object_list  %}
             <tr>
+                <th class="text-center">Slug</th>
+                <th class="text-center">Created By</th>
+                <th class="text-center">ID</th>
+                <th class="text-center">Task Name</th>
+                <th class="text-center">Description</th>
+            </tr>
+        {% for task in object_list  %}
+
+            <tr>
+                <td>{{ task.slug }}</td>
                 <td>{{ task.created_by }}</td>
                 <td>{{ task.id }}</td>
                 <td>{{ task.name }}</td>
@@ -15,7 +24,6 @@
             </tr>
         {% endfor %}
         </table>
-
 
     </div>
 {% endblock %}
