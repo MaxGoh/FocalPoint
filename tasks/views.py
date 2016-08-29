@@ -1,20 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
-from django.views.generic.list import ListView
+from django.views import generic
 from django.utils import timezone
 
 
 from .models import Task
 from .forms import TaskForm
-
-class TaskListView(ListView):
-    model = Task
-
-    def get_context_data(self, **kwargs):
-        context = super(TaskListView, self).get_context_data(**kwargs)
-        context['now'] = timezone.now()
-        return context
 
 @login_required
 def add_new_task(request):
@@ -29,15 +20,20 @@ def add_new_task(request):
         form = TaskForm()
     return render(request, "tasks/add.html", {'form': form})
 
-"""
+
+class TaskListView(generic.ListView):
+    template_name = "tasks/task_list.html"
+    context_object_name = "task_list"
+
+    def get_queryset(self):
+        return Task.objects.filter(created_by=self.request.user)
+
+
 def task_detail_view(request, slug):
     task = get_object_or_404(Task, slug=slug)
-    return render(request, 'tasks/detail.html', {
-        'task': task,
-    })
-"""
+    return render(request, 'tasks/detail.html', {'task': task})
 
-def filtered_task_list(request):
-    tasks = Task.objects.filter(created_by=request.user)
-    return render(request, 'tasks/task_list.html', {'tasks': tasks})
 
+class TaskDetailView(generic.DetailView):
+    model = Task
+    template_name="tasks/detail.html"

@@ -6,6 +6,7 @@
             <h1>Task List</h1>
         </header>
         <table>
+
             <tr>
                 <th class="text-center">Slug</th>
                 <th class="text-center">Created By</th>
@@ -14,17 +15,18 @@
                 <th class="text-center">Description</th>
                 <th class="text-center">URL</th>
             </tr>
-        {% for task in tasks %}
 
+        {% for task in task_list %}
             <tr>
                 <td>{{ task.slug }}</td>
                 <td>{{ task.created_by }}</td>
                 <td>{{ task.id }}</td>
                 <td>{{ task.name }}</td>
                 <td>{{ task.description }}</td>
+                <td><a href="{% url 'task_detail' slug=task.slug %}"><u>Detail</u></a></td>
             </tr>
         {% endfor %}
-        </table>
 
+        </table>
     </div>
 {% endblock %}
