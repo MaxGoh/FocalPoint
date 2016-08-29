@@ -7,6 +7,7 @@ class Task(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField(blank=True)
     id = models.AutoField(primary_key=True)
+    slug = models.SlugField(max_length=250, unique_for_date='publish')
 
     class Meta:
         ordering = ["id"]
