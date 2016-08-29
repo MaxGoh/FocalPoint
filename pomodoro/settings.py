@@ -38,11 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'widget_tweaks',
+    'avatar',
+    'django_extensions',
+
     'accounts',
     'pages',
     'tasks',
-    'widget_tweaks',
-    'avatar',
 ]
 
 MIDDLEWARE_CLASSES = [

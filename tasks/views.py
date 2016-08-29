@@ -24,13 +24,20 @@ def add_new_task(request):
             obj = form.save(commit=False)
             obj.created_by = request.user # Get Current User
             obj.save()
-            return redirect('/tasks/test/')
+            return redirect('task_list')
     else:
         form = TaskForm()
     return render(request, "tasks/add.html", {'form': form})
 
+"""
 def task_detail_view(request, slug):
     task = get_object_or_404(Task, slug=slug)
     return render(request, 'tasks/detail.html', {
         'task': task,
     })
+"""
+
+def filtered_task_list(request):
+    tasks = Task.objects.filter(created_by=request.user)
+    return render(request, 'tasks/task_list.html', {'tasks': tasks})
+

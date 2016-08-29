@@ -12,8 +12,9 @@
                 <th class="text-center">ID</th>
                 <th class="text-center">Task Name</th>
                 <th class="text-center">Description</th>
+                <th class="text-center">URL</th>
             </tr>
-        {% for task in object_list  %}
+        {% for task in tasks %}
 
             <tr>
                 <td>{{ task.slug }}</td>
