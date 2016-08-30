@@ -15,7 +15,7 @@ def add_new_task(request):
             obj = form.save(commit=False)
             obj.created_by = request.user # Get Current User
             obj.save()
-            return redirect('task_list')
+            return redirect('dashboard')
     else:
         form = TaskForm()
     return render(request, "tasks/add.html", {'form': form})

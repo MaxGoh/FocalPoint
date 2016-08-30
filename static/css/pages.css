@@ -137,16 +137,33 @@ table {
 
 thead tr:first-child {
   background: #FF6656;
-  color: #fff;
+  color: snow;
   border: none;
+}
+
+td {
+    color: snow
+}
+
+td > a {
+    color: snow;
+    font-size: 1.2em;
+}
+
+td > a:hover {
+    color: #FF6656;
+}
+
+td > i {
+    color: snow;
 }
 
 th {font-weight: bold;}
 th:first-child, td:first-child {padding: 0 15px 0 20px;}
 
-thead tr:last-child th {border-bottom: 3px solid #ddd;}
+thead tr:last-child th {border-bottom: 3px solid #FF6656;}
 
-tbody tr:hover {background-color: #ffeeff;}
+/*tbody tr:hover {background-color: #ffeeff;}*/
 tbody tr:last-child td {border: none;}
 tbody td {border-bottom: 1px solid #ddd;}
 
@@ -168,6 +185,11 @@ td:last-child {
 .excluir:hover {
   color: #dc2a2a;
 }
+
+.table-url {
+    color:
+}
+
 
 /* dashboard */
 .short-div {
