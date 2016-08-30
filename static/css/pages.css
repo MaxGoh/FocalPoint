@@ -141,6 +141,10 @@ thead tr:first-child {
   border: none;
 }
 
+th.table-head {
+    font-size: 1.4em;
+}
+
 td {
     color: snow
 }

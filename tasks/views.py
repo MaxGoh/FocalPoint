@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.views import generic
-from django.utils import timezone
-
+from django.contrib import messages
 
 from .models import Task
 from .forms import TaskForm
@@ -15,6 +14,7 @@ def add_new_task(request):
             obj = form.save(commit=False)
             obj.created_by = request.user # Get Current User
             obj.save()
+            messages.success(request, 'Task has been successfully created')
             return redirect('dashboard')
     else:
         form = TaskForm()
@@ -27,6 +27,7 @@ def task_for_user(user):
 def delete_selected_task(request, slug):
     selected_task = get_object_or_404(Task, slug=slug)
     selected_task.delete()
+    messages.success(request, 'Task has been successfully deleted')
     return redirect('dashboard')
 
 class TaskListView(generic.ListView):

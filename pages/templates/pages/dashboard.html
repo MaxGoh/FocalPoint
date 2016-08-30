@@ -1,16 +1,17 @@
 {% extends "base.html" %}
 {% block title %}Pomodoro | Dashboard{% endblock %}
 
+
 {% block content %}
 
-<div class="container">
+<div class="container-fluid">
   <header>
     <h1>{{ request.user|title }}'s Dashboard</h1>
   </header>
   <table class="col-md-6">
     <thead>
       <tr>
-        <th colspan="3"><b>Task List</b></th>
+        <th colspan="3" class="text-center table-head"><b>Your Task</b></th>
       </tr>
       <tr>
         <th>No.</th>
