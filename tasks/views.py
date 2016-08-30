@@ -21,17 +21,16 @@ def add_new_task(request):
     return render(request, "tasks/add.html", {'form': form})
 
 
+def task_for_user(user):
+    return Task.objects.filter(created_by=user)
+
 class TaskListView(generic.ListView):
-    template_name = "tasks/task_list.html"
+    template_name = "includes/task_list.html"
     context_object_name = "task_list"
 
     def get_queryset(self):
-        return Task.objects.filter(created_by=self.request.user)
-
-
-def task_detail_view(request, slug):
-    task = get_object_or_404(Task, slug=slug)
-    return render(request, 'tasks/detail.html', {'task': task})
+        #return Task.objects.filter(created_by=self.request.user)
+        return task_for_user(self.request.user)
 
 
 class TaskDetailView(generic.DetailView):

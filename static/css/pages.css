@@ -129,3 +129,17 @@ table {
 th, td {
     padding: 15px;
 }
+
+/* dashboard */
+.short-div {
+    height:50px;
+}
+
+.dashboard-container {
+    border: 1px solid snow
+}
+
+.dashboard-container:hover {
+    border: 1px solid palevioletred;
+}
+

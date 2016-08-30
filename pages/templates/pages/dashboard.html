@@ -4,10 +4,32 @@
 
 {% block content %}
     <div class="container">
-        <div class="page-header">
-            <h1>Dashboard</h1>
-            {{ request.user }}
-        </div>
-    </div>
+        <header>
+            <h1>{{ request.user|title }}'s Dashboard</h1>
+        </header>
 
+        <div class="dashboard-container col-md-6">
+
+             <table>
+
+                <tr>
+                    <th class="text-center">Project Name</th>
+                    <th class="text-center">Description</th>
+                    <th class="text-center">Created</th>
+                </tr>
+
+            {% for task in tasks %}
+                <tr>
+                    <td><a href="{% url 'task_detail' slug=task.slug %}"><u>{{ task.name }}</u></a></td>
+                    <td>{{ task.description }}</td>
+                    <td>{{ task.created_at }}</td>
+                </tr>
+            {% endfor %}
+
+            </table>
+
+        </div>
+
+
+    </div>
 {% endblock %}
