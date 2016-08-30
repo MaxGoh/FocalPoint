@@ -27,12 +27,14 @@
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                 <li class="text-center">Signed in as <b>{{ user|title }}</b></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="{% url 'profile' %}">Your Profile</a></li>
-                <li><a href="{% url 'dashboard' %}">Your Dashboard</a></li>
+                <li><a href="{% url 'profile' %}"><span class="glyphicon glyphicon-user"></span> Your Profile</a></li>
+                <li><a href="{% url 'dashboard' %}"><span class="glyphicon glyphicon-dashboard"></span> Your Dashboard</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-question-sign"></span> Help</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="url{% url 'logout' %}"><span class="glyphicon glyphicon-off"></span> Sign Out</a></li>
               </ul>
             </div>
             <li><a href="{% url 'add_task' %}"><span class="glyphicon glyphicon-plus"></span> New Task</a></li>
-            <li><a href="url{% url 'logout' %}"><span class="glyphicon glyphicon-off"></span> Sign Out</a></li>
         {% else %}
           <li><a href="url{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
           <li><a href="url{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
