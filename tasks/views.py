@@ -24,6 +24,11 @@ def add_new_task(request):
 def task_for_user(user):
     return Task.objects.filter(created_by=user)
 
+def delete_selected_task(request, slug):
+    selected_task = get_object_or_404(Task, slug=slug)
+    selected_task.delete()
+    return redirect('dashboard')
+
 class TaskListView(generic.ListView):
     template_name = "includes/task_list.html"
     context_object_name = "task_list"

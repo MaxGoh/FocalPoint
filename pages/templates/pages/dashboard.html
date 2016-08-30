@@ -1,35 +1,36 @@
 {% extends "base.html" %}
-
 {% block title %}Pomodoro | Dashboard{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <header>
-            <h1>{{ request.user|title }}'s Dashboard</h1>
-        </header>
 
-        <div class="dashboard-container col-md-6">
+<div class="container">
+  <header>
+    <h1>{{ request.user|title }}'s Dashboard</h1>
+  </header>
+  <table class="col-md-6">
+    <thead>
+      <tr>
+        <th colspan="3">Task List</th>
+      </tr>
+      <tr>
+        <th>No.</th>
+        <th colspan="2">Task Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for task in tasks %}
+      <tr>
+        <td>{{ task.id }}</td>
+        <td><a href="{% url 'task_detail' slug=task.slug %}"><u>{{ task.name }}</u></a></td>
+        <td>
+          <!-- Add edit button here -->
+          <i class="fa fa-pencil button alterar"></i>
+          <a href="{% url 'task_delete' slug=task.slug %}"><i class="fa fa-trash button excluir"></i></a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 
-             <table>
-
-                <tr>
-                    <th class="text-center">Project Name</th>
-                    <th class="text-center">Description</th>
-                    <th class="text-center">Created</th>
-                </tr>
-
-            {% for task in tasks %}
-                <tr>
-                    <td><a href="{% url 'task_detail' slug=task.slug %}"><u>{{ task.name }}</u></a></td>
-                    <td>{{ task.description }}</td>
-                    <td>{{ task.created_at }}</td>
-                </tr>
-            {% endfor %}
-
-            </table>
-
-        </div>
-
-
-    </div>
 {% endblock %}

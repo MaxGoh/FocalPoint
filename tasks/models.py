@@ -11,8 +11,8 @@ class Task(models.Model):
     id = models.AutoField(primary_key=True)
     slug = models.SlugField(max_length=250, unique=True)
 
-    class Meta:
-        ordering = ["id"]
+    class Me:
+        ordering = ["created_at"]
 
     def __str__(self):
         return self.name
