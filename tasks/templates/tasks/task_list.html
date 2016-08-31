@@ -5,28 +5,48 @@
         <header>
             <h1>Task List</h1>
         </header>
-        <table>
 
-            <tr>
-                <th class="text-center">Slug</th>
-                <th class="text-center">Created By</th>
-                <th class="text-center">ID</th>
-                <th class="text-center">Task Name</th>
-                <th class="text-center">Description</th>
-                <th class="text-center">URL</th>
-            </tr>
-
+        <div class="page-header">
+          <h1 class="header-h1">Popular</h1>
+        </div>
+        <div class="row">
         {% for task in task_list %}
-            <tr>
-                <td>{{ task.slug }}</td>
-                <td>{{ task.created_by }}</td>
-                <td>{{ task.id }}</td>
-                <td>{{ task.name }}</td>
-                <td>{{ task.description }}</td>
-                <td><a href="{% url 'task_detail' slug=task.slug %}"><u>Detail</u></a></td>
-            </tr>
-        {% endfor %}
 
-        </table>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+           <!--Card-->
+            <div class="card">
+
+                <!--Card image-->
+                <div class="view overlay hm-white-slight">
+                    <img src="http://mdbootstrap.com/images/reg/reg%20(2).jpg" class="img-fluid" alt="">
+                    <a href="#">
+                        <div class="mask"></div>
+                    </a>
+                </div>
+                <!--/.Card image-->
+
+                <!--Card content-->
+                <div class="card-block">
+                    <!--Title-->
+                    <h4 class="card-title">{{ task.name }}</h4>
+                    <!--Text-->
+                    <p class="card-text">{{ task.description }}</p>
+                    <div class="row">
+                        <a href="{% url 'task_detail' slug=task.slug %}" class="btn btn-primary">Details</a>
+                        <a class="btn btn-danger" href="{% url 'task_delete' slug=task.slug %}"><i class="fa fa-trash button excluir"></i> Delete</a>
+                    </div>
+                </div>
+                <!--/.Card content-->
+
+            </div>
+            <!--/.Card-->
+          </div>
+        {% endfor %}
+        </div>
+
+        <div class="page-header">
+            <h1 class="header-h1">Newest</h1>
+        </div>
+
     </div>
 {% endblock %}

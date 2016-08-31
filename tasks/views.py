@@ -15,7 +15,7 @@ def add_new_task(request):
             obj.created_by = request.user # Get Current User
             obj.save()
             messages.success(request, 'Task has been successfully created')
-            return redirect('dashboard')
+            return redirect('task_list')
     else:
         form = TaskForm()
     return render(request, "tasks/add.html", {'form': form})
@@ -28,10 +28,10 @@ def delete_selected_task(request, slug):
     selected_task = get_object_or_404(Task, slug=slug)
     selected_task.delete()
     messages.success(request, 'Task has been successfully deleted')
-    return redirect('dashboard')
+    return redirect('task_list')
 
 class TaskListView(generic.ListView):
-    template_name = "includes/task_list.html"
+    template_name = "tasks/task_list.html"
     context_object_name = "task_list"
 
     def get_queryset(self):

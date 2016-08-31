@@ -3,8 +3,8 @@ html, body {
   padding:0;
   margin:0;
   font-family: 'Ubuntu Mono', monospace;
-  color: whitesmoke;
 }
+
 @media (max-width: 979px) {
   html, body {
   }
@@ -203,3 +203,6 @@ td:last-child {
     border: 1px solid palevioletred;
 }
 
+.header-h1 {
+    color: snow;
+}
