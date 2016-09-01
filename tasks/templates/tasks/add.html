@@ -1,16 +1,47 @@
 {% extends "base.html" %}
+{% load widget_tweaks %}
 
 {% block title %}TaskHive | Add Task{% endblock %}
 
 {% block content %}
     <div class="container">
-        <header>
-            <h1><b>Create New Task</b></h1>
-        </header>
-         <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Create Task">
-        </form>
-    </div>
+
+      <form class="col s12 form-padding" method="POST">{% csrf_token %}
+
+        <div class="row">
+
+          <div class="input-field col s6">
+            {{ form.created_by }}
+            <label>Owner</label>
+          </div>
+
+          <div class="input-field col s6">
+            <label for="name" data-error="wrong">Task Name</label>
+            {{ form.name }}
+          </div>
+        </div> <!-- Row -->
+
+        <div class="row">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">mode_edit</i>
+            <label for="description">Description</label>
+            {{ form.description|add_class:"materialize-textarea" }}
+          </div>
+        </div> <!-- Row -->
+
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+          <i class="material-icons right">send</i>
+        </button>
+
+      </form>
+
+    <script>
+
+      $(document).ready(function() {
+        $('select').material_select();
+      });
+
+    </script>
+
+   </div> <!-- Container -->
 {% endblock %}

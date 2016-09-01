@@ -11,7 +11,7 @@ class Task(models.Model):
     id = models.AutoField(primary_key=True)
     slug = models.SlugField(max_length=250, unique=True)
 
-    class Me:
+    class Meta:
         ordering = ["created_at"]
 
     def __str__(self):
@@ -20,3 +20,15 @@ class Task(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)  # set the slug explicitly
         super(Task, self).save(*args, **kwargs)  # call Django's save()
+
+
+class Note(models.Model):
+    task = models.ForeignKey(Task)
+    note = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["created_at"]
+
+    def __str__(self):
+        return self.note

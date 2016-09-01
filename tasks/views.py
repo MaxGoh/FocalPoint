@@ -1,10 +1,15 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
+from django.http import HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from django.views import generic
+from django.views.generic.edit import FormMixin
+from django.views.generic.detail import SingleObjectMixin
 from django.contrib import messages
+from django.core.urlresolvers import reverse
+from django.views.generic import FormView
 
-from .models import Task
-from .forms import TaskForm
+from .models import Task, Note
+from .forms import TaskForm, NoteForm
 
 @login_required
 def add_new_task(request):
@@ -24,11 +29,13 @@ def add_new_task(request):
 def task_for_user(user):
     return Task.objects.filter(created_by=user)
 
+
 def delete_selected_task(request, slug):
     selected_task = get_object_or_404(Task, slug=slug)
     selected_task.delete()
     messages.success(request, 'Task has been successfully deleted')
     return redirect('task_list')
+
 
 class TaskListView(generic.ListView):
     template_name = "tasks/task_list.html"
@@ -38,7 +45,35 @@ class TaskListView(generic.ListView):
         #return Task.objects.filter(created_by=self.request.user)
         return task_for_user(self.request.user)
 
-
-class TaskDetailView(generic.DetailView):
+class TaskDetailView(FormMixin, generic.DetailView):
     model = Task
     template_name="tasks/detail.html"
+    form_class = NoteForm
+
+    def get_context_data(self, **kwargs):
+        context = super(TaskDetailView, self).get_context_data(**kwargs)
+        context['note_form'] = self.get_form()
+        context['notes'] = Note.objects.all()
+
+        return context
+
+    def get_success_url(self):
+        return reverse('task_detail', kwargs={'slug': self.kwargs['slug']})
+
+    def post(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        current_task = get_object_or_404(Task, slug=self.kwargs['slug'])
+        self.object = form.save(commit=False)
+        self.object.task =  current_task
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
+        #return super(TaskDetailView, self).form_valid(form

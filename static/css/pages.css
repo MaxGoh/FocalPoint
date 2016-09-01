@@ -1,5 +1,5 @@
 html, body {
-  background: #1a1a1a;
+  background: snow;
   padding:0;
   margin:0;
   font-family: 'Ubuntu Mono', monospace;
@@ -205,4 +205,8 @@ td:last-child {
 
 .header-h1 {
     color: snow;
+}
+
+.form-padding {
+    padding-top: 15px;
 }
