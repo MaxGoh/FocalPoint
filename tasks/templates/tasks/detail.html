@@ -13,19 +13,26 @@
           <table>
             <th class="center-align">Description</th>
             <tr>
-              <td>{{ task.description }}</td>
+              <td class="center-align">{{ task.description }}</td>
             </tr>
             <th class="center-align">Created On</th>
             <tr>
-              <td>{{ task.created_at }}</td>
+              <td class="center-align">{{ task.created_at }}</td>
             </tr>
             <th class="center-align">Duration Spent</th>
             <tr>
-              <td>13 Hours</td>
+              <td class="center-align">13 Hours</td>
             </tr>
             <th class="center-align">Category</th>
             <tr>
-              <td>Software, Tags</td>
+              <td class="center-align">
+                <div class="chip">Software</div>
+                <div class="chip">Work</div>
+                <div class="chip">Chemistry</div>
+                <div class="chip">Software</div>
+                <div class="chip">Work</div>
+                <div class="chip">Chemistry</div>
+              </td>
             </tr>
           </table>
         </div>
@@ -56,8 +63,15 @@
           <ul class="collapsible" data-collapsible="accordion">
           {% for note in notes %}
             <li>
-              <div class="collapsible-header"><i class="material-icons">whatshot</i>{{ note.name }}</div>
-              <div class="collapsible-body"><p>{{ note.note }}</p></div>
+              <div class="collapsible-header">
+                <i class="material-icons">whatshot</i>
+                {{ note.name }}
+
+              </div>
+              <div class="collapsible-body">
+                <p>{{ note.note }}</p>
+                <i>{{ note.created_at }}</i>
+              </div>
             </li>
           {% endfor %}
           </ul>

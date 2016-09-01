@@ -53,7 +53,7 @@ class TaskDetailView(FormMixin, generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super(TaskDetailView, self).get_context_data(**kwargs)
         context['note_form'] = self.get_form()
-        context['notes'] = Note.objects.all()
+        context['notes'] = Note.objects.filter(task__slug=self.kwargs['slug'])
 
         return context
 
