@@ -51,10 +51,14 @@
           </div>
         </div>
         <div id="detail-note-div" class="col m9">
+
           <!-- Notes -->
-          <ul class="collection">
+          <ul class="collapsible" data-collapsible="accordion">
           {% for note in notes %}
-            <li class="collection-item">{{ note.note }}</li>
+            <li>
+              <div class="collapsible-header"><i class="material-icons">whatshot</i>{{ note.name }}</div>
+              <div class="collapsible-body"><p>{{ note.note }}</p></div>
+            </li>
           {% endfor %}
           </ul>
           <form class="col m12" method="POST">{% csrf_token %}
@@ -62,10 +66,15 @@
 
               <div class="row">
 
+                <div class="input-field col s6">
+                  <i class="material-icons prefix">subject</i>
+                  <label for="last_name">Title</label>
+                  {{ note_form.name }}
+                </div>
 
                 <div class="input-field col m12">
                   <i class="material-icons prefix">mode_edit</i>
-                  <label for="description">Notes</label>
+                  <label for="description">Snippet</label>
                   {{ note_form.note|add_class:"materialize-textarea" }}
                 </div>
               </div> <!-- Row -->
@@ -88,6 +97,11 @@
     <script>
       $(document).ready(function(){
         $('ul.tabs').tabs();
+
+        $('.collapsible').collapsible({
+          accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+        });
+
       });
     </script>
 {% endblock %}

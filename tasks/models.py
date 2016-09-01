@@ -24,6 +24,7 @@ class Task(models.Model):
 
 class Note(models.Model):
     task = models.ForeignKey(Task)
+    name = models.CharField(max_length=50)
     note = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
