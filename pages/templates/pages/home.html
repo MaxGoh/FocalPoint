@@ -3,63 +3,101 @@
 
 {% block title %}TaskHive | Home{% endblock %}
 
+{% block head %}
+  <style>
+  .parallax-container {
+    height: 100vh;
+  }
+  .blur {
+    -webkit-filter: blur(2px);
+  }
+  </style>
+{% endblock %}
+
 {% block content %}
-    <section class="section-header parallax">
-        <div class="container">
-            <table class="table-container">
-                <tr>
-                    <h1 class="shout">Start being in control of your projects</h1>
-                </tr>
-                <tr>
-                      <a href="{% url 'login' %}" class="btn btn-get-started red"><b>Get Started</b></a>
-                    <a href="{% url 'about' %}" class="btn btn-get-started "><b>Find Out More</b></a>
-                </tr>
-            </table>
+
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <br><br>
+        <h1 class="header center indigo-text text-lighten-2">Productivity. Efficiency. Tracking.</h1>
+        <div class="row center">
+          <h5 class="header col s12 light">A modern web app built to serve your time management needs</h5>
         </div>
-    </section>
-    <section class="section section-2">
-        <div class="container">
-            {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <script>
-                        toastr.success(message)
-                    </script>
-                {% endfor %}
-            </ul>
-            {% endif %}
-            <div class="row">
-                <div class="col-md-offset-1 col-lg-offset-1 col-sm-offset-1 col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                    <div class="productivity info">
-                        <h1><b>Tracking</b></h1>
-                        <h4>Keep track of your work</h4>
-                        <span class="glyphicon glyphicon-time"></span>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                    <div class="time info">
-                        <h1><b>Time</b></h1>
-                        <h4>Manage your time better</h4>
-                        <span class="glyphicon glyphicon-time"></span>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                    <div class="control info">
-                        <h1><b>Control</b></h1>
-                        <h4>Be in control</h4>
-                        <span class="glyphicon glyphicon-time"></span>
-                    </div>
-                </div>
-            </div>
+        <div class="row center">
+          <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light indigo lighten-1">Get Started</a>
+          <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light white indigo-text lighten-1">Learn More</a>
         </div>
-    </section>
-    <section class="section section-3">
-        <div class="container">
-           <div class="row">
-               <blockquote>
-                   “All things are created twice; first mentally; then physically.  The key to creativity is to begin with the end in mind, with a vision and a blue print of the desired result.” — Stephen Covey
-               </blockquote>
-           </div>
+        <br><br>
+
+      </div>
+    </div>
+    <div class="parallax"><img src="{% static 'images/productivity_wallpaper.jpg' %}" alt="Unsplashed background img 1"></div>
+  </div>
+
+
+  <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center red-text"><i class="material-icons large">flash_on</i></h2>
+            <h5 class="indigo-text darken-4 center">Speeds up development</h5>
+
+            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+          </div>
         </div>
-    </section>
+      </div>
+
+      <div class="row">
+        <div class="col s12 offset-m8 m4 ">
+          <div class="icon-block">
+            <h2 class="center red-text"><i class="material-icons large">group</i></h2>
+            <h5 class="indigo-text darken-4 center">User Experience Focused</h5>
+
+            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center red-text"><i class="material-icons large">settings</i></h2>
+            <h5 class="indigo-text darken-4 center">Easy to work with</h5>
+
+            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div class="row">
+
+  </div>
+
+<!-- Parallax
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="{% static 'images/home_wallpaper.jpeg' %}" alt="Unsplashed background img 2"></div>
+  </div>
+  -->
+
+  <script>
+   $(document).ready(function(){
+     $('.parallax').parallax();
+   });
+  </script>
+
 {% endblock %}

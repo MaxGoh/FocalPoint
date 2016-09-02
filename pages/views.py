@@ -22,6 +22,9 @@ def faq_view(request):
 def profile_view(request):
     return render(request, 'pages/profile.html')
 
+#def profile_update_view(request):
+
+
 
 @login_required(login_url="/login/")
 def dashboard_view(request):

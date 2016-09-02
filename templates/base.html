@@ -35,6 +35,9 @@
     <script src="{% static 'javascript/modernizr.custom.js' %}"></script>
     -->
 
+    {% block head %}
+    {% endblock %}
+
 </head>
 <body>
 
@@ -50,10 +53,10 @@
     </ul>
     {% endif %}
 
-    {% include "navbar-materialize.html" %}
-
     {% block menu %}
     {% endblock %}
+
+    {% include "navbar-materialize.html" %}
 
     {% block content %}
     {% endblock %}
