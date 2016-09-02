@@ -16,6 +16,14 @@
       <form class="form-wrapper card-panel child valign z-depth-5" method="POST" action="{% url 'login' %}">{% csrf_token %}
 
         <div class="row">
+          <h1 class="center-align indigo-text"><b>Login</b></h1>
+        </div>
+
+        <div class="row">
+          <img class="responsive-img circle smaller center-block small-border" src="http://www.femto.it/wp-content/uploads/2014/04/default-user-avatar.png"/>
+        </div>
+
+        <div class="row">
           <div class="input-field col s12">
             <i class="material-icons prefix">account_circle</i> {{ form.username }}
             <label for="icon_prefix">Username</label>
@@ -31,14 +39,14 @@
 
         <div class="row">
           <p>
-            <input type="checkbox" id="test5" />
+            <input type="checkbox" class="indigo-checkbox" id="test5" />
             <label for="test5">Remember Me</label>
           </p>
 
         </div>
 
         <div class="row">
-          <button class="btn waves-light waves-effect col s12" type="submit" value="login">Login</button>
+          <button class="indigo btn waves-light waves-effect col s12" type="submit" value="login">Login</button>
           <input type="hidden" name="next" value="{{ next }}" />
         </div>
       </form>
