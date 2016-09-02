@@ -1,0 +1,47 @@
+                      <td>Username </td>
+                        <td>{{ user }}</td>
+                    </tr>
+                    <tr>
+                        <td>First Name</td>
+                        <td>{{ user.first_name|title }}</td>
+                    </tr>
+                    <tr>
+                        <td>Last Name</td>
+                        <td>{{ user.last_name|title }}</td>
+                    </tr>
+                    <tr>
+                        <td>Email </td>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                    <tr>
+                        <td>Last Login Date</td>
+                        <td>{{ user.last_login }}</td>
+                    </tr>
+                    <tr>
+                        <td>Joined Date</td>
+                        <td>{{ user.date_joined|date }}</td>
+                    </tr>
+                </table>
+                            <p{% if message.tags %     <div class="inner-container">
+    <div class="box">
+        <h1><b>Login</b></h1>
+        {% if form.errors %}
+            <p class="login-error">Invalid password or username</p>
+        {% endif %}
+        <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <table align="center">
+        <tr>
+            <td>{{ form.username|append_attr:"placeholder:Username" }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.password|append_attr:"placeholder:Password" }}</td>
+        </tr>
+        </table>
+            <button class="btn" type="submit" value="login">Login</button>
+            <input type="hidden" name="next" value="{{ next }}" />
+        </form>
+      <p>Don't have a account? <a href="{% url 'register' %}">Click here!</a></p>
+    </div>
+  </div} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+            </div>

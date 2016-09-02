@@ -1,3 +1,22 @@
 html {
     background: #e8eaf6;
 }
+
+.form-wrapper {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.margintop {
+	margin-top: 20%;
+}
+
+.valign-parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-wrapper {
+    height: 100vh;
+}

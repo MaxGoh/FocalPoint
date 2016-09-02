@@ -1,0 +1,15 @@
+Django==1.10.1
+django-appconf==1.0.2
+django-avatar==3.0.0
+django-extensions==1.7.3
+django-widget-tweaks==1.4.1
+httplib2==0.9.2
+oauth2==1.9.0.post1
+oauthlib==1.1.2
+Pillow==3.3.1
+PyJWT==1.4.2
+python-openid==2.2.5
+python-social-auth==0.2.21
+requests==2.11.1
+requests-oauthlib==0.6.2
+six==1.10.0
