@@ -27,21 +27,29 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTH_PROFILE_MODULE = "accounts.UserProfile"
+AUTH_USER_MODEL = "accounts.User"
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+   # Admin
+
+    'material',
+    'material.frontend',
+    'material.admin',
+
+    'django.contrib.admin', # must be before material.admin
+
     'widget_tweaks',
     'avatar',
     'django_extensions',
+    'materializecssform',
 
     'accounts',
     'pages',

@@ -2,9 +2,10 @@ from django.db import models
 from django.utils.text import slugify
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+from django.conf import settings
 
 class Task(models.Model):
-    created_by = models.ForeignKey(User)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL)
     created_at = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=50)
     description = models.TextField(blank=True)
