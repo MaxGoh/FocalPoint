@@ -27,6 +27,8 @@ class Note(models.Model):
     name = models.CharField(max_length=50)
     note = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+    url = models.URLField(blank=True)
+    id = models.AutoField(primary_key=True)
 
     class Meta:
         ordering = ["-created_at"]

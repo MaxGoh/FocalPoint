@@ -76,7 +76,7 @@
               <div class="collapsible-header">
                 <i class="material-icons">whatshot</i>
                 {{ note.name }}
-
+                <a href="{% url 'note_delete' pk=note.pk slug=task.slug %}">Delete</a>
               </div>
               <div class="collapsible-body">
                 <p>{{ note.note }}</p>
@@ -101,10 +101,16 @@
                   <label for="description">Snippet</label>
                   {{ note_form.note|add_class:"materialize-textarea" }}
                 </div>
+
+              <div class="input-field col m12">
+                  <i class="material-icons prefix">https</i>
+                  <label for="description">URLs</label>
+                  {{ note_form.url }}
+                </div>
               </div> <!-- Row -->
 
               <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                <i class="material-icons right">send</i>
+                <i class="material-icons right">note_add</i>
               </button>
             </div>
           </form>

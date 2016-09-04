@@ -1,13 +1,11 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect
-from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import login as django_login
+from django.dispatch import Signal
 
-from django.conf import settings
 from .forms import UserCreateForm
 
 def login_view(request, *args, **kwargs):
@@ -15,6 +13,7 @@ def login_view(request, *args, **kwargs):
     if isinstance(response, HttpResponseRedirect):
         messages.success(request, 'You have successfully logged in.')
     return response
+
 
 def register_new(request):
     if request.method == "POST":
@@ -28,10 +27,9 @@ def register_new(request):
         form = UserCreateForm()
     return render(request, 'accounts/register.html', {'form': form})
 
+
 @login_required
 def logout_view(request):
     logout(request)
     messages.success(request, 'You have successfully logged out.')
     return HttpResponseRedirect('/')
-
-
