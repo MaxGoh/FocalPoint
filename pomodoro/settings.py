@@ -38,18 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-   # Admin
-
-    'material',
-    'material.frontend',
-    'material.admin',
-
-    'django.contrib.admin', # must be before material.admin
+   'django.contrib.admin', # must be before material.admin
 
     'widget_tweaks',
     'avatar',
     'django_extensions',
-    'materializecssform',
+    'pipeline',
+
+    #    'materializecssform',
 
     'accounts',
     'pages',
@@ -65,6 +61,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'pipeline.middleware.MinifyHTMLMiddleware',
 ]
 
 ROOT_URLCONF = 'pomodoro.urls'
@@ -142,4 +139,31 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
+
+PIPELINE_COMPILERS = (
+    'pipeline.compressors.cssmin.CSSMinCompressor',
+    'pipeline.compilers.sass.SASSCompiler',
+    'pipeline.compressors.yuglify.YuglifyCompressor',
+)
+
+PIPELINE_YUGLIFY_BINARY = "/home/max/work/node_modules/yuglify/bin/yuglify"
+
+PIPELINE = {
+    'STYLESHEETS': {
+        'main': {
+            'source_filenames': (
+              'scss/materialize.scss',
+            ),
+            'output_filename': 'css/main.css',
+            'extra_context': {
+                'media': 'screen,projection',
+            },
+        },
+    },
+}
+
+
 

@@ -75,12 +75,24 @@
             <li>
               <div class="collapsible-header">
                 <i class="material-icons">whatshot</i>
-                {{ note.name }}
-                <a href="{% url 'note_delete' pk=note.pk slug=task.slug %}">Delete</a>
+                <b>{{ note.name }}</B>
+                <a href="{% url 'note_delete' pk=note.pk slug=task.slug %}" class="secondary-content"><i class="material-icons">delete</i></a>
               </div>
               <div class="collapsible-body">
-                <p>{{ note.note }}</p>
-                <i>{{ note.created_at }}</i>
+                <div class="collapsible-content">
+                  <div class="container">
+                    <div class="note-content">
+                      {{ note.note }}
+                    </div>
+                    {% if note.url %}
+                      <hr>
+                      <div class="note-url">
+                        <a href="{{ note.url }}">{{ note.url }}</a>
+                      </div>
+                    {% endif %}
+
+                  </div>
+                </div>
               </div>
             </li>
           {% endfor %}

@@ -15,15 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from material.frontend import urls as frontend_urls
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'', include(frontend_urls)),
-
     url(r'^', include('accounts.urls')),
     url(r'^', include('pages.urls')),
     url(r'^tasks/', include('tasks.urls')),
     url(r'^avatar/', include('avatar.urls')),
-#    url(r'^admin/', admin.site.urls),
-]
+    url(r'^admin/', admin.site.urls),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+

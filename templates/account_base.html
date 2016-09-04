@@ -16,15 +16,18 @@
     <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin">
 
+    {% block header %}
+    {% endblock %}
 
 </head>
 <body>
 
-{% block menu %}
-{% endblock %}
+  {% block menu %}
+  {% endblock %}
 
-    {% block content %}
-    {% endblock %}
+
+  {% block content %}
+  {% endblock %}
 
 </body>
 </html>

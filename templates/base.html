@@ -1,16 +1,14 @@
-{% load static %}
-{% include 'material/includes/material_css.html' %}
-<script src="{% static 'material/js/jquery-2.2.0.js' %}"></script>
-{% include 'material/includes/material_js.html' %}
-{% load material_form %}
+<!DOCTYPE html>{% load static %}
+{% load pipeline %}
 
-
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>{% block title %}TaskHive | Start being in control of your time{% endblock %}</title>
+
+    <!-- test -->
+    {% stylesheet 'main' %}
 
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 

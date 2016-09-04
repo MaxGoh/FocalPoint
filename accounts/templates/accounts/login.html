@@ -1,20 +1,20 @@
 {% extends "account_base.html" %}
 {% load widget_tweaks %}
-{% load materializecss %}
 {% load static %}
 
 {% block title %}Login{% endblock %}
 
 {% block header %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
 {% endblock %}
 
 {% block menu %}
 {% endblock %}
 
 {% block content %}
-  <div class="login-wrapper valign-parent">
+    <div class="login-wrapper valign-parent">
     <div class="valign-wrapper">
-      <form id="login_form" class="form-wrapper card-panel child valign z-depth-5" method="POST" action="{% url 'login' %}">{% csrf_token %}
+      <form id="login_form" class="form-wrapper card-panel child valign z-depth-3 translucent " method="POST" action="{% url 'login' %}">{% csrf_token %}
 
         <div class="row">
           <h1 class="center-align indigo-text"><b>Login</b></h1>
@@ -60,12 +60,10 @@
         </div>
       </form>
     </div>
-  </div>
 
-  <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
-  <script>
-    $("document").ready(function() {
-      $("#login-form").validate();
-    })
-  </script>
+    <script>
+      $("document").ready(function() {
+        $("#login-form").validate();
+      })
+    </script>
 {% endblock %}
