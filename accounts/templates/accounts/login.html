@@ -1,69 +1,70 @@
-{% extends "account_base.html" %}
+{% extends "base.html" %}
 {% load widget_tweaks %}
 {% load static %}
 
 {% block title %}Login{% endblock %}
 
-{% block header %}
-  <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+{% block src %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/pages/login.css' %}">
 {% endblock %}
 
-{% block menu %}
-{% endblock %}
 
 {% block content %}
-    <div class="login-wrapper valign-parent">
-    <div class="valign-wrapper">
-      <form id="login_form" class="form-wrapper card-panel child valign z-depth-3 translucent " method="POST" action="{% url 'login' %}">{% csrf_token %}
 
-        <div class="row">
-          <h1 class="center-align indigo-text"><b>Login</b></h1>
-        </div>
+<!--Navigation & Intro-->
+<header>
 
-        <div class="row">
-          <img class="responsive-img circle smaller center-block small-border" src="{% static 'images/default-user-avatar.png' %}"/>
-        </div>
+    <!--Mask-->
+    <div class="view hm-black-strong">
+        <div class="full-bg-img flex-center">
+						<!--Form with header-->
+						<div class="card">
+								<div class="card-block">
+										<!--Header-->
+										<div class="form-header  purple darken-4">
+												<h3><i class="fa fa-lock"></i> Login:</h3>
+										</div>
 
-        <div class="row">
-          <div class="input-field col s12">
-            <i class="material-icons prefix">account_circle</i> {{ form.username|add_class:"validate" }}
-            <label for="{{ form.username.id_for_label }}" >Username</label>
-          </div>
-        </div>
+										<!--Body-->
+										<form id="login_form" method="POST" action="{% url 'login' %}">{% csrf_token %}
 
-        <div class="row">
-          <div class="input-field col s12">
-            <i class="material-icons prefix">lock_outline</i> {{ form.password }}
-            <label for="{{ form.password.id_for_label }}">Password</label>
-          </div>
-        </div>
+												<div class="md-form">
+														<i class="fa fa-envelope prefix"></i>
+														{{ form.username|add_class:"validate form-control" }}
+														<label for="{{ form.username.id_for_label }}" >Username</label>
+												</div>
 
-        <div class="row">
-          <p>
-            <input type="checkbox" class="indigo-checkbox" id="test5" />
-            <label for="test5">Remember Me</label>
-          </p>
-        </div>
+												<div class="md-form">
+														<i class="fa fa-lock prefix"></i>
+														{{ form.password|add_class:"validate form-control" }}
+														<label for="{{ form.password.id_for_label }}">Password</label>
+												</div>
 
-        <div class="row">
-          <button class="indigo btn waves-light waves-effect col s12" type="submit" value="login">Login</button>
-          <input type="hidden" name="next" value="{{ next }}" />
-        </div>
+												<div class="text-xs-center">
+														<button class="btn btn-deep-purple" type="submit" value="login">Login</button>
+														<input type="hidden" name="next" value="{{ next }}" />
+												</div>
 
-        <div class="row">
-          <div class="col s8">
-            <a href="#">Lost your password?</a>
-          </div>
-          <div class="col s4">
-            <a href="{% url 'register' %}">Register</a>
-          </div>
+										</form>
+
+								</div>
+
+								<!--Footer-->
+								<div class="modal-footer">
+										<div class="options">
+											<p>Not a member? <a href="{% url 'register' %}">Sign Up</a></p>
+												<!--<p>Forgot <a href="#">Password?</a></p>-->
+										</div>
+								</div>
+
+						</div>
+						<!--/Form with header-->
         </div>
-      </form>
     </div>
+    <!--/.Mask-->
 
-    <script>
-      $("document").ready(function() {
-        $("#login-form").validate();
-      })
-    </script>
+</header>
+<!--/Navigation & Intro-->
+
 {% endblock %}
+

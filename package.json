@@ -1,0 +1,39 @@
+{
+  "name": "pomodoro",
+  "version": "1.0.0",
+  "description": "### Objective - Be in control of your time and project - Uses Pomodoro Technique - Integration with Google Calendar",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/.bin/webpack --config webpack.config.js --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaxGoh/Pomodoro-Django.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaxGoh/Pomodoro-Django/issues"
+  },
+  "homepage": "https://github.com/MaxGoh/Pomodoro-Django#readme",
+  "devDependencies": {
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "css-loader": "^0.24.0",
+    "image-webpack-loader": "^2.0.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.2",
+    "webpack-bundle-tracker": "0.0.93",
+    "webpack-dev-server": "^1.15.1"
+  },
+  "dependencies": {
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "jquery": "^3.1.0",
+    "materialize-css": "^0.97.7",
+    "node-sass": "^3.9.0",
+    "sass-loader": "^4.0.1",
+    "webpack-dev-server": "^1.15.1"
+  }
+}

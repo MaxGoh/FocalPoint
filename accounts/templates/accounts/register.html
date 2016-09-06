@@ -1,98 +1,101 @@
-{% extends "account_base.html" %}
+{% extends "base.html" %}
 {% load widget_tweaks %}
 {% load static %}
 
 {% block title %}Register{% endblock %}
 
-{% block header %}
-{% endblock %}
-
-{% block menu %}
+{% block src %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/pages/register.css'%}">
 {% endblock %}
 
 {% block content %}
-  <div class="login-wrapper valign-parent">
-    <div class="valign-wrapper">
-      <form id="register-form" class="form-wrapper card-panel child valign z-depth-5" method="POST" action="{% url 'register' %}">{% csrf_token %}
 
-        <div class="row">
-          <h1 class="center-align indigo-text"><b>Register</b></h1>
+    <!--Mask-->
+    <div class="view hm-black-strong">
+        <div class="full-bg-img flex-center">
+
+			<!--Form with header-->
+			<div class="card col-lg-4 col-md-4 col-s-12">
+					<div class="card-block">
+							<!--Header-->
+							<div class="form-header  purple darken-4">
+									<h3><i class="fa fa-lock"></i> Register</h3>
+							</div>
+
+							<!--Body-->
+							<form id="login_form" method="POST" action="{% url 'register' %}">{% csrf_token %}
+
+									<div class="md-form">
+											<i class="material-icons prefix">account_circle</i> 
+											{{ form.username }}
+											<label for="{{ form.username.id_for_label }}">Username</label>
+									</div>
+
+									<div class="row">
+										<div class="md-form col-lg-6">
+											{{ form.first_name }}
+											<label for="{{ form.first_name.id_for_label }}">First Name</label>
+										</div>
+
+										<div class="md-form col-lg-6">
+											{{ form.last_name }}
+											<label for="{{ form.last_name.id_for_label }}">Last Name</label>
+										</div>
+									</div>
+
+									<div class="md-form">
+										<i class="material-icons prefix">email</i>
+										{{ form.email }}
+										<label for="{{ form.email.id_for_label }}" data-error="Please input valid e-mail">Email</label>
+									</div>
+
+									<div class="md-form">
+										<i class="material-icons prefix">perm_contact_calendar</i> 
+										{{ form.date_of_birth|add_class:"datepicker" }}
+										<label for="{{ form.email.id_for_label }}">Date of Birth</label>
+									</div>
+
+									<div class="md-form">
+										<i class="material-icons prefix">lock_outline</i> 
+										{{ form.password1 }}
+										<label for="{{ form.password1.id_for_label }}">Password</label>
+									</div>
+
+									<div class="md-form">
+										<i class="material-icons prefix">lock</i> 
+										{{ form.password2 }}
+										<label for="{{ form.password2.id_for_label }}">Confirmation Password</label>
+									</div>
+
+									<div class="text-xs-center">
+											<button class="btn btn-deep-purple" type="submit" value="register">Register</button>
+											<input type="hidden" name="next" value="{{ next }}" />
+									</div>
+
+							</form>
+
+					</div>
+
+					<!--Footer-->
+					<div class="modal-footer">
+							<div class="options">
+								<p>Already have a account? <a href="{% url 'login' %}">Log in</a></p>
+									<!--<p>Forgot <a href="#">Password?</a></p>-->
+							</div>
+					</div>
+
         </div>
-
-        <div class="row">
-          <div class="input-field col s12">
-            <i class="material-icons prefix">account_circle</i> {{ form.username }}
-            <label for="{{ form.username.id_for_label }}">Username</label>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="input-field col s6">
-            {{ form.first_name }}
-            <label for="{{ form.first_name.id_for_label }}">First Name</label>
-          </div>
-
-          <div class="input-field col s6">
-            {{ form.last_name }}
-            <label for="{{ form.last_name.id_for_label }}">Last Name</label>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="input-field col s12">
-            <i class="material-icons prefix">email</i> {{ form.email }}
-            <label for="{{ form.email.id_for_label }}" data-error="Please input valid e-mail">Email</label>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="fieldWrapper">
-            {{ form.date_of_birth.errors }}
-          </div>
-          <div class="input-field col s12">
-            <i class="material-icons prefix">perm_contact_calendar</i> {{ form.date_of_birth|add_class:"datepicker" }}
-            <label for="{{ form.email.id_for_label }}">Date of Birth</label>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="input-field col s12">
-            <i class="material-icons prefix">lock_outline</i> {{ form.password1 }}
-            <label for="{{ form.password1.id_for_label }}">Password</label>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="input-field col s12">
-            <i class="material-icons prefix">lock</i> {{ form.password2 }}
-            <label for="{{ form.password2.id_for_label }}">Confirmation Password</label>
-          </div>
-        </div>
-
-        <div class="row">
-          <button class="indigo btn waves-light waves-effect col s12" type="submit" value="login">Register</button>
-          <input type="hidden" name="next" value="{{ next }}" />
-        </div>
-
-        <div class="row">
-          <div class="col s12">
-            Already have an account? <a href="{% url 'login' %}">Click here</a>
-          </div>
-        </div>
-      </form>
     </div>
-  </div>
+    <!--/.Mask-->
 
-  <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
-  <script>
-    $('.datepicker').pickadate({
-      selectMonths: true, // Creates a dropdown to control month
-      selectYears: 100 // Creates a dropdown of 15 years to control year
-    });
+	<script>
+		$('.datepicker').pickadate({
+			selectMonths: true, // Creates a dropdown to control month
+			selectYears: 100 // Creates a dropdown of 15 years to control year
+		});
+	</script>
 
-    $("document").ready(function() {
 
-    })
 
-    </script>
+
 {% endblock %}

@@ -1,1 +1,136 @@
 {% extends "base.html" %}
+
+{% block content %}
+
+<head>
+
+    <style>
+        html,
+        body,
+        header,
+        .view {
+            height: 100%;
+        }
+        /* Navigation*/
+        
+        .navbar {
+            background-color: transparent;
+        }
+        
+        .top-nav-collapse {
+            background-color: #006296;
+        }
+        
+   s     @media only screen and (max-width: 768px) {
+            .navbar {
+                background-color: #006296;
+            }
+        }
+        /*Intro*/
+        
+        .view {
+            background: url("http://mdbootstrap.com/images/regular/people/img%20(54).jpg")no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        
+        @media (max-width: 768px) {
+            .full-bg-img,
+            .view {
+                height: auto;
+                position: relative;
+            }
+        }
+        
+        .description {
+            padding-top: 25%;
+            padding-bottom: 3rem;
+            color: #fff
+        }
+        
+        @media (max-width: 992px) {
+            .description {
+                padding-top: 7rem;
+                text-align: center;
+            }
+        }
+        footer.page-footer {
+            background-color: #077AB7;
+        }
+    </style>
+
+</head>
+
+        <!--Mask-->
+        <div class="view hm-black-strong">
+            <div class="full-bg-img flex-center">
+                <div class="container">
+                    <div class="row" id="home">
+
+                        <!--First column-->
+                        <div class="col-lg-6">
+                            <div class="description">
+                                <h2 class="h2-responsive wow fadeInLeft">We like to receive a messages </h2>
+                                <hr class="hr-light wow fadeInLeft">
+                                <p class="wow fadeInLeft" data-wow-delay="0.4s">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem repellendus quasi fuga nesciunt dolorum nulla magnam veniam sapiente, fugiat! Commodi sequi non animi ea dolor molestiae, quisquam iste, maiores. Nulla.</p>
+                                <br>
+                                <a class="btn btn-git btn-lg wow fadeInLeft" data-wow-delay="0.7s">Learn more</a>
+                            </div>
+                        </div>
+                        <!--/.First column-->
+
+                        <!--Second column-->
+                        <div class="col-lg-6 wow fadeInRight">
+                            <!--Form-->
+                            <div class="card">
+                                <div class="card-block">
+                                    <!--Header-->
+                                    <div class="text-xs-center">
+                                        <h3><i class="fa fa-envelope"></i> Write to us:</h3>
+                                        <hr>
+                                    </div>
+
+                                    <!--Body-->
+                                    <div class="md-form">
+                                        <i class="fa fa-user prefix"></i>
+                                        <input type="text" id="form3" class="form-control">
+                                        <label for="form3">Your name</label>
+                                    </div>
+                                    <div class="md-form">
+                                        <i class="fa fa-envelope prefix"></i>
+                                        <input type="text" id="form2" class="form-control">
+                                        <label for="form2">Your email</label>
+                                    </div>
+
+                                    <!--Textarea with icon prefix-->
+                                    <div class="md-form">
+                                        <i class="fa fa-pencil prefix"></i>
+                                        <textarea type="text" id="form8" class="md-textarea"></textarea>
+                                        <label for="form8">Your message</label>
+                                    </div>
+
+                                    <div class="text-xs-center">
+                                        <button class="btn btn-git btn-lg">Send</button>
+                                        <hr>
+                                        <fieldset class="form-group">
+                                            <input type="checkbox" id="checkbox1">
+                                            <label for="checkbox1">Subscribe me to the newsletter</label>
+                                        </fieldset>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!--/.Form-->
+                        </div>
+                        <!--/Second column-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/.Mask-->
+
+    
+
+{% endblock %}

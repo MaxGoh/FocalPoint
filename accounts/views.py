@@ -25,7 +25,7 @@ def register_new(request):
             return redirect('login')
     else:
         form = UserCreateForm()
-    return render(request, 'accounts/register.html', {'form': form})
+    return render(request, 'accounts/register.html', {'form': form, 'navbar': 'register'})
 
 
 @login_required
