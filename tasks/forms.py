@@ -13,5 +13,5 @@ class NoteForm(ModelForm):
     class Meta:
         model = Note
         exclude = ['task',]
-        fields = ['name', 'note',]
+        fields = ['name', 'note', 'url']
 

@@ -1,110 +1,100 @@
-{% extends "account_base.html" %}
+{% extends "base.html" %}
 {% load widget_tweaks %}
 {% load static %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Register{% endblock %}
 
-{% block header %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/account.css' %}">
-{% endblock %}
-
-{% block menu %}
-    <div class="container">
-    <div class="parent2">
-        <a href="{% url 'login' %}"><div class="test1"><i class="fa fa-sign-in fa-2x"></i></div></a>
-        <a href="{% url 'about' %}"><div class="test2"><i class="fa fa-info-circle fa-2x"></i></div></a>
-        <a href="{% url 'about' %}"><div class="test3"><i class="fa fa-envelope-o fa-2x"></i></div></a>
-        <a href="{% url 'home' %}"><div class="test4"><i class="fa fa-home fa-2x"></i></div></a>
-        <div class="mask2"><i class="fa fa-cog fa-3x"></i></div>
-    </div>
-
-
-    <script>
-        $(document).ready(function() {
-
-          var active1 = false;
-          var active2 = false;
-          var active3 = false;
-          var active4 = false;
-
-            $('.parent2').on('click', function() {
-
-            if (!active1) $(this).find('.test1').css({'background-color': 'gray', 'transform': 'translate(0px,125px)'});
-            else $(this).find('.test1').css({'background-color': 'dimGray', 'transform': 'none'});
-             if (!active2) $(this).find('.test2').css({'background-color': 'gray', 'transform': 'translate(60px,105px)'});
-            else $(this).find('.test2').css({'background-color': 'darkGray', 'transform': 'none'});
-              if (!active3) $(this).find('.test3').css({'background-color': 'gray', 'transform': 'translate(105px,60px)'});
-            else $(this).find('.test3').css({'background-color': 'silver', 'transform': 'none'});
-              if (!active4) $(this).find('.test4').css({'background-color': 'gray', 'transform': 'translate(125px,0px)'});
-            else $(this).find('.test4').css({'background-color': 'silver', 'transform': 'none'});
-            active1 = !active1;
-            active2 = !active2;
-            active3 = !active3;
-            active4 = !active4;
-
-            });
-        });
-    </script>
-    </div>
+{% block src %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/pages/register.css'%}">
 {% endblock %}
 
 {% block content %}
 
-    <video class="bgvid back" autoplay="true" muted="muted" preload="auto" loop>
-        <source src="{% static 'videos/register_video.mp4' %}" type="video/mp4">
-        <source src="http://shortcodelic1.manuelmasiacsasi.netdna-cdn.com/themes/geode/wp-content/uploads/2014/04/milky-way-river-1280hd.mp4.mp4" type="video/mp4">
-    </video>
-     <div class="inner-container" style="top:calc(50vh - 250px); height: 600px;">
-    <div class="box">
-        <h1><b>Register</b></h1>
-        {% if form.errors %}
-            <p class="login-error">Please check your input</p>
-        {% endif %}
-        <form method="post" action="{% url 'register' %}">
-        {% csrf_token %}
-        <table align="center">
-        <tr>
-            <td>{{ form.username|append_attr:"placeholder:Username" }}</td>
-        </tr>
-        <tr>
-            <td>{{ form.email|append_attr:"placeholder:E-mail" }}</td>
-        </tr>
-        <tr>
-            <td>{{ form.password1|append_attr:"placeholder:Password" }}</td>
-        </tr>
-        <tr>
-            <td>{{ form.password2|append_attr:"placeholder:Confirmation Password" }}</td>
-        </tr>
-        </table>
-            <button class="btn" type="submit" value="register">Register</button>
-            <input type="hidden" name="next" value="{{ next }}" />
-        </form>
-      <p>Already have a account? <a href="{% url 'login' %}">Sign in</a></p>
-    </div>
-  </div>
-</div>
+    <!--Mask-->
+    <div class="view hm-black-strong">
+        <div class="full-bg-img flex-center">
 
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-            <div class="alert alert-success" role="alert">
-                <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
-            </div>
-        {% endfor %}
-    </ul>
-    {% endif %}
+			<!--Form with header-->
+			<div class="card col-lg-4 col-md-4 col-s-12">
+					<div class="card-block">
+							<!--Header-->
+							<div class="form-header  purple darken-4">
+									<h3><i class="fa fa-lock"></i> Register</h3>
+							</div>
 
+							<!--Body-->
+							<form id="login_form" method="POST" action="{% url 'register' %}">{% csrf_token %}
 
-{% if next %}
-    {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-    {% else %}
-        <div class="alert alert-danger" role="alert">
-            <p>Please login to see this page.</p>
+									<div class="md-form">
+											<i class="material-icons prefix">account_circle</i> 
+											{{ form.username }}
+											<label for="{{ form.username.id_for_label }}">Username</label>
+									</div>
+
+									<div class="row">
+										<div class="md-form col-lg-6">
+											{{ form.first_name }}
+											<label for="{{ form.first_name.id_for_label }}">First Name</label>
+										</div>
+
+										<div class="md-form col-lg-6">
+											{{ form.last_name }}
+											<label for="{{ form.last_name.id_for_label }}">Last Name</label>
+										</div>
+									</div>
+
+									<div class="md-form">
+										<i class="material-icons prefix">email</i>
+										{{ form.email }}
+										<label for="{{ form.email.id_for_label }}" data-error="Please input valid e-mail">Email</label>
+									</div>
+
+									<div class="md-form">
+										<i class="material-icons prefix">perm_contact_calendar</i> 
+										{{ form.date_of_birth|add_class:"datepicker" }}
+										<label for="{{ form.email.id_for_label }}">Date of Birth</label>
+									</div>
+
+									<div class="md-form">
+										<i class="material-icons prefix">lock_outline</i> 
+										{{ form.password1 }}
+										<label for="{{ form.password1.id_for_label }}">Password</label>
+									</div>
+
+									<div class="md-form">
+										<i class="material-icons prefix">lock</i> 
+										{{ form.password2 }}
+										<label for="{{ form.password2.id_for_label }}">Confirmation Password</label>
+									</div>
+
+									<div class="text-xs-center">
+											<button class="btn btn-deep-purple" type="submit" value="register">Register</button>
+											<input type="hidden" name="next" value="{{ next }}" />
+									</div>
+
+							</form>
+
+					</div>
+
+					<!--Footer-->
+					<div class="modal-footer">
+							<div class="options">
+								<p>Already have a account? <a href="{% url 'login' %}">Log in</a></p>
+									<!--<p>Forgot <a href="#">Password?</a></p>-->
+							</div>
+					</div>
+
         </div>
-    {% endif %}
-{% endif %}
+    </div>
+    <!--/.Mask-->
+
+	<script>
+		$('.datepicker').pickadate({
+			selectMonths: true, // Creates a dropdown to control month
+			selectYears: 100 // Creates a dropdown of 15 years to control year
+		});
+	</script>
+
 
 
 

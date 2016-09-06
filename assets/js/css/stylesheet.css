@@ -1,0 +1,121 @@
+/*================================================================================
+ General
+================================================================================*/
+
+html {
+/*    background: #7986cb;*/
+    font-family: Ubuntu, "times new roman", times, roman, serif;
+}
+
+/*================================================================================
+ Navbar
+================================================================================*/
+
+header, main, footer { padding-left: 0px; }
+a.button-collapse { padding-left: 15px; }
+a.brand-logo.left-align.hide-on-med-and-down { padding-left: 20px; }
+a.brand-logo.left-align.hide-on-small-only.hide-on-large-only { font-size: 1.675rem; }
+a.brand-logo.left-align.hide-on-small-only.hide-on-large-only span { font-size: 1.12rem; }
+@media only screen and (max-width: 320px) {
+  a.brand-logo.left-align.hide-on-med-and-up { font-size: 1.15rem; }
+}
+@media only screen and (min-width: 321px) {
+  a.brand-logo.left-align.hide-on-med-and-up { font-size: 1.25rem; }
+}
+
+
+/*================================================================================
+ Form
+================================================================================*/
+/*----------------------------------------
+  General Form
+------------------------------------------*/
+
+
+.form-wrapper {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.margintop {
+	margin-top: 20%;
+}
+
+.valign-parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-wrapper {
+    height: 100vh;
+}
+
+.smaller {
+    height: 50%;
+    width: 50%;
+}
+
+.small-border {
+    border: 3px solid #7986cb;
+}
+
+/*----------------------------------------
+ Form custom customization
+------------------------------------------*/
+
+/* label focus color */
+.input-field input[type=text]:focus + label {
+    color: #1a237e;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #1a237e;
+    box-shadow: 0 1px 0 0 #1a237e;
+}
+
+/* label focus color */
+.input-field input[type=password]:focus + label {
+    color: #1a237e;
+}
+/* label underline focus color */
+.input-field input[type=password]:focus {
+    border-bottom: 1px solid #1a237e;
+    box-shadow: 0 1px 0 0 #1a237e;
+}
+
+.input-field .prefix.active {
+    color: #1a237e;
+}
+
+.indigo-checkbox:checked + label:before {
+    top: -4px;
+    left: -3px;
+    width: 12px;
+    height: 22px;
+    border-top: 2px solid transparent;
+    border-left: 2px solid transparent;
+    border-right: 2px solid #1a237e; /* You need to change the colour here */
+    border-bottom: 2px solid #1a237e; /* And here */
+    -webkit-transform: rotate(40deg);
+    -moz-transform: rotate(40deg);
+    -ms-transform: rotate(40deg);
+    -o-transform: rotate(40deg);
+    transform: rotate(40deg);
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-origin: 100% 100%;
+    -moz-transform-origin: 100% 100%;
+    -ms-transform-origin: 100% 100%;
+    -o-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+}
+
+/*================================================================================
+ Font
+================================================================================*/
+
+.ubuntu {
+    font-family: Ubuntu, "times new roman", times, roman, serif;
+}
+
+

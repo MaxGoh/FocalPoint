@@ -1,46 +1,97 @@
 {% extends "base.html" %}
 {% block title %}Pomodoro | Dashboard{% endblock %}
-
+<!-- for task in tasks -->
+{% block head %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.bundle.min.js"></script>
+{% endblock %}
 
 {% block content %}
 
-<div class="container-fluid">
-  <header>
-    <h1>{{ request.user|title }}'s Dashboard</h1>
-  </header>
-  <table class="col-md-6">
-    <thead>
-      <tr>
-        <th colspan="3" class="text-center table-head"><b>Your Task</b></th>
-      </tr>
-      <tr>
-        <th>No.</th>
-        <th colspan="2">Task Name</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for task in tasks %}
-      <tr>
-        <td>{{ task.id }}</td>
-        <td><a href="{% url 'task_detail' slug=task.slug %}"><b>{{ task.name }}</b></a></td>
-        <td>
-          <!-- Add edit button here -->
-          <i class="fa fa-pencil button alterar"></i>
-          <a class="table-url" href="{% url 'task_delete' slug=task.slug %}"><i class="fa fa-trash button excluir"></i></a>
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-    <!--
-    <div id="cal-heatmap"></div>
-    <script type="text/javascript">
-        var cal = new CalHeatMap();
-        cal.init({});
-    </script>
-    -->
+  <div class="container">
 
-</div>
+      <div class="row"> <!-- Duration Spent Card -->
+        <div class="col s6 m2 l3">
+          <div class="card blue-grey darken-3">
+            <div class="card-content white-text">
+              <span class="card-title center-block center"><b>15 Hours</b></span>
+            </div>
+            <div class="yellow-text blue-grey darken-4 card-action center-block center">
+              <b>Total Duration Total</b>
+            </div>
+          </div>
+        </div>
 
+        <div class="col s6 m2 l3">
+          <div class="card blue-grey darken-3">
+            <div class="card-content white-text">
+              <span class="card-title center-block center"><b>2 Hours</b></span>
+            </div>
+            <div class="yellow-text blue-grey darken-4 card-action center-block center">
+              <b>Duration Spent Today</b>
+            </div>
+          </div>
+        </div>
+
+        <canvas id="myChart" class="col s6 m8 l6"></canvas>
+
+      </div>
+
+      <div class="row">
+        <ul class="collection col s12 m6 l6">
+        <li class="collection-item avatar">
+          <i class="material-icons circle">folder</i>
+          <span class="title"><b>Tasks</b></span>
+          <p>Your Favourites</p>
+          <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+        </li>
+        {% for task in tasks %}
+          <li class="collection-item"><div>{{ task.name }}<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+        {% endfor %}
+      </ul>
+      </div>
+
+  </div>
+
+  <script>
+    $("document").ready(function() {
+    })
+    var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+  </script>
 
 {% endblock %}

@@ -5,55 +5,62 @@
 
 {% block content %}
 
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-            <script>
-                toastr.success(message)
-            </script>
-        {% endfor %}
-    </ul>
-    {% endif %}
+<!-- SideNav slide-out button -->
+<a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-bars"></i></a>
+<!--/. SideNav slide-out button -->
 
-    <div class="container">
+<!-- Sidebar navigation -->
+<ul id="slide-out" class="side-nav fixed default-side-nav light-side-nav">
 
-        <header class="clearfix">
-            <h1>Profile <span>Your personal folder</span></h1>
-        </header>
-
-        <div class="row" style="padding-top: 20px;">
-            <div class="avatar col-lg-offset-2 col-lg-4">
-                <a href="{% url 'avatar_change' %}">{% avatar user 205 class="img-circle img-responsive" id="user_avatar" %}</a>
-                <a class="btn btn-get-started red" href="{% url 'avatar_change' %}">Edit your profile</a>
-            </div>
-            <div class="profile-information col-lg-4">
-                <table class="table-container profile-table">
-                    <tr>
-                        <td>Username </td>
-                        <td>{{ user }}</td>
-                    </tr>
-                    <tr>
-                        <td>First Name</td>
-                        <td>{{ user.first_name|title }}</td>
-                    </tr>
-                    <tr>
-                        <td>Last Name</td>
-                        <td>{{ user.last_name|title }}</td>
-                    </tr>
-                    <tr>
-                        <td>Email </td>
-                        <td>{{ user.email }}</td>
-                    </tr>
-                    <tr>
-                        <td>Last Login Date</td>
-                        <td>{{ user.last_login }}</td>
-                    </tr>
-                    <tr>
-                        <td>Joined Date</td>
-                        <td>{{ user.date_joined|date }}</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
+    <!-- Logo -->
+    <div class="logo-wrapper waves-light">
+        <a href="#"><img src="http://mdbootstrap.com/wp-content/uploads/2015/12/mdb-white2.png" class="img-fluid flex-center"></a>
     </div>
+    <!--/. Logo -->
+
+    <!--Search Form-->
+    <form class="search-form" role="search">
+        <div class="form-group waves-effect">
+            <input type="text" class="form-control" placeholder="Search">
+        </div>
+    </form>
+    <!--/.Search Form-->
+
+    <!-- Side navigation links -->
+    <ul class="collapsible collapsible-accordion">
+        <li><a class="collapsible-header waves-effect">Click me</a>
+            <div class="collapsible-body">
+                <ul>
+                    <li><a href="#" class="waves-effect">Link</a>
+                    </li>
+                    <li><a href="#" class="waves-effect">Link</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li><a class="collapsible-header waves-effect">Click me</a>
+            <div class="collapsible-body">
+                <ul>
+                    <li><a href="#" class="waves-effect">Link</a>
+                    </li>
+                    <li><a href="#" class="waves-effect">Link</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li><a class="collapsible-header waves-effect">Click me</a>
+            <div class="collapsible-body">
+                <ul>
+                    <li><a href="#" class="waves-effect">Link</a>
+                    </li>
+                    <li><a href="#" class="waves-effect">Link</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <!--/. Side navigation links -->
+</ul>
+<!--/. Sidebar navigation -->
+
 {% endblock %}

@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 {% load widget_tweaks %}
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.js"></script>
+{% endblock %}
 
 {% block content %}
     <div class="container">
@@ -13,25 +19,32 @@
           <table>
             <th class="center-align">Description</th>
             <tr>
-              <td>{{ task.description }}</td>
+              <td class="center-align">{{ task.description }}</td>
             </tr>
             <th class="center-align">Created On</th>
             <tr>
-              <td>{{ task.created_at }}</td>
+              <td class="center-align">{{ task.created_at }}</td>
             </tr>
             <th class="center-align">Duration Spent</th>
             <tr>
-              <td>13 Hours</td>
+              <td class="center-align">13 Hours</td>
             </tr>
             <th class="center-align">Category</th>
             <tr>
-              <td>Software, Tags</td>
+              <td class="center-align">
+                <div class="chip">Software</div>
+                <div class="chip">Work</div>
+                <div class="chip">Chemistry</div>
+                <div class="chip">Software</div>
+                <div class="chip">Work</div>
+                <div class="chip">Chemistry</div>
+              </td>
             </tr>
           </table>
         </div>
 
         <!-- Pomodoro -->
-        <div class="col m9">
+        <div class="col m9 s12">
           <ul class="tabs">
             <li class="tab col m3"><a class="" href="#detail-timer-div">Timer</a></li>
             <li class="tab col m3"><a class="active" href="#detail-note-div">Notes</a></li>
@@ -40,13 +53,17 @@
         </div>
         <div id="detail-timer-div" class="col m9">
           <!-- Timer -->
-          Timer
           <div class="row">
-            <div class="col m6"></div>
+            <div class="col m6">
+              <div class="countdown-clock">
+                <h1 class="valign center-block center-align"><b>25:00</b></h1>
+              </div>
+            </div>
             <div class="col m3">
-                <a class="waves-effect waves-light btn">Play</a>
-                <a class="waves-effect waves-light btn">Stop</a>
-              <hr>
+              <div class="valign center-block center-align">
+                <a id="play-btn" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">play_arrow</i></a>
+                <a id="stop-btn" class="btn-floating btn-large waves-effect waves-light red disabled"><i class="material-icons">stop</i></a>
+              </div>
             </div>
           </div>
         </div>
@@ -56,12 +73,31 @@
           <ul class="collapsible" data-collapsible="accordion">
           {% for note in notes %}
             <li>
-              <div class="collapsible-header"><i class="material-icons">whatshot</i>{{ note.name }}</div>
-              <div class="collapsible-body"><p>{{ note.note }}</p></div>
+              <div class="collapsible-header">
+                <i class="material-icons">whatshot</i>
+                <b>{{ note.name }}</B>
+                <a href="{% url 'note_delete' pk=note.pk slug=task.slug %}" class="secondary-content"><i class="material-icons">delete</i></a>
+              </div>
+              <div class="collapsible-body">
+                <div class="collapsible-content">
+                  <div class="container">
+                    <div class="note-content">
+                      {{ note.note }}
+                    </div>
+                    {% if note.url %}
+                      <hr>
+                      <div class="note-url">
+                        <a href="{{ note.url }}">{{ note.url }}</a>
+                      </div>
+                    {% endif %}
+
+                  </div>
+                </div>
+              </div>
             </li>
           {% endfor %}
           </ul>
-          <form class="col m12" method="POST">{% csrf_token %}
+          <form id="post-form" class="col m12" method="POST">{% csrf_token %}
             <div class="row">
 
               <div class="row">
@@ -77,10 +113,16 @@
                   <label for="description">Snippet</label>
                   {{ note_form.note|add_class:"materialize-textarea" }}
                 </div>
+
+              <div class="input-field col m12">
+                  <i class="material-icons prefix">https</i>
+                  <label for="description">URLs</label>
+                  {{ note_form.url }}
+                </div>
               </div> <!-- Row -->
 
               <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                <i class="material-icons right">send</i>
+                <i class="material-icons right">note_add</i>
               </button>
             </div>
           </form>
@@ -95,13 +137,52 @@
     </div>
 
     <script>
-      $(document).ready(function(){
+      $(document).ready(function() {
         $('ul.tabs').tabs();
 
         $('.collapsible').collapsible({
-          accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+          accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
         });
 
-      });
+      }) /* end of DOM */
+
+      var query;
+      var n  = 100;
+
+      function countDown() {
+        if (n > 0) {
+          n--;
+          $(".time").text(n);
+        }
+      }
+
+      function play() {
+        $(".time").text(n);
+        query = setTimeout(function() {
+            countDown();
+            setTimeout(countDown, 1000);
+          })
+          console.log(n);
+      }
+
+      function stop() {
+        console.log("Timer stop");
+        clearTimeout(query);
+      }
+
+      function countDown() {
+
+      }
+
+      $("#play-btn").click(function() {
+        $(this).addClass("disabled");
+        $("#stop-btn").removeClass("disabled");
+      })
+
+      $("#stop-btn").click(function() {
+        $(this).addClass("disabled");
+        $("#play-btn").removeClass("disabled");
+      })
+
     </script>
 {% endblock %}

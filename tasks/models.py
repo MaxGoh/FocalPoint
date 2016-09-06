@@ -2,9 +2,10 @@ from django.db import models
 from django.utils.text import slugify
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+from django.conf import settings
 
 class Task(models.Model):
-    created_by = models.ForeignKey(User)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL)
     created_at = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=50)
     description = models.TextField(blank=True)
@@ -27,9 +28,11 @@ class Note(models.Model):
     name = models.CharField(max_length=50)
     note = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+    url = models.URLField(blank=True)
+    id = models.AutoField(primary_key=True)
 
     class Meta:
-        ordering = ["created_at"]
+        ordering = ["-created_at"]
 
     def __str__(self):
         return self.note

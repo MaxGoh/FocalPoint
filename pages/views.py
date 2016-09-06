@@ -3,14 +3,23 @@ from django.contrib.auth.decorators import login_required
 from tasks import views as task_view
 
 def home_view(request):
+    """
+    Return /
+    """
     return render(request, 'pages/home.html', {'navbar': 'home'})
 
 
 def about_view(request):
+    """
+    Return /about/
+    """
     return render(request, 'pages/about.html', {'navbar': 'about'})
 
 
 def contact_view(request):
+    """
+    Return /contact/
+    """
     return render(request, 'pages/contact.html', {'navbar': 'contact'})
 
 

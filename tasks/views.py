@@ -37,6 +37,15 @@ def delete_selected_task(request, slug):
     return redirect('task_list')
 
 
+def delete_selected_note(request, pk, slug):
+    note = get_object_or_404(Note, pk=pk)
+    note.delete()
+    selected_task = get_object_or_404(Task, slug=slug)
+    messages.success(request, 'Note has been deleted')
+#    return redirect('task_list')
+    return HttpResponseRedirect(reverse('task_detail', kwargs={'slug':selected_task.slug}))
+
+
 class TaskListView(generic.ListView):
     template_name = "tasks/task_list.html"
     context_object_name = "task_list"
@@ -53,7 +62,7 @@ class TaskDetailView(FormMixin, generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super(TaskDetailView, self).get_context_data(**kwargs)
         context['note_form'] = self.get_form()
-        context['notes'] = Note.objects.all()
+        context['notes'] = Note.objects.filter(task__slug=self.kwargs['slug'])
 
         return context
 
@@ -77,3 +86,5 @@ class TaskDetailView(FormMixin, generic.DetailView):
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
         #return super(TaskDetailView, self).form_valid(form
+
+

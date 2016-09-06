@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Task
+from .models import Task, Note
 
 class TaskAdmin(admin.ModelAdmin):
     fields = ('created_by', 'name', 'description', 'slug')
-    list_display = ('created_at', 'created_by', 'name', 'slug', 'description',)
+    list_display = ('id', 'pk', 'created_at', 'created_by', 'name', 'slug', 'description',)
     list_filter = ('created_at', 'created_by', 'name', 'description',)
     prepopulated_fields = {'slug': ('name',)}
 
@@ -25,4 +25,10 @@ class TaskAdmin(admin.ModelAdmin):
         return self.readonly_fields
 
 
+
+class NoteAdmin(admin.ModelAdmin):
+    fields = ('name', 'note',)
+    list_display = ('id', 'pk', 'created_at', 'name', 'note',)
+
 admin.site.register(Task, TaskAdmin)
+admin.site.register(Note, NoteAdmin)
