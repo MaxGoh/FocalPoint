@@ -36,3 +36,11 @@ class Note(models.Model):
 
     def __str__(self):
         return self.note
+
+
+class Duration(models.Model):
+    task = models.ForeignKey(Task)
+    total_second = models.IntegerField();
+    started_at = models.TimeField(auto_now_add=True, blank=True, null=True)
+    end_at = models.TimeField(auto_now_add=True, blank=True, null=True)
+

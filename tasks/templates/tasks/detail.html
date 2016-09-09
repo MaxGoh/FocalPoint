@@ -2,76 +2,81 @@
 {% load widget_tweaks %}
 {% load static %}
 
-{% block head %}
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.js"></script>
+{% block src %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/authenticated/task_detail.css' %}">
 {% endblock %}
 
 {% block content %}
-    <div class="container">
+    <div class="container margin red-text">
 
-      <h1 class="center-align">{{ task.name }}</h1>
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs tabs-3 indigo" role="tablist">
+						<li class="nav-item">
+								<a class="nav-link waves-effect active" data-toggle="tab" href="#timer" role="tab"><i class="fa fa-user"></i> Timer</a>
+						</li>
+						<li class="nav-item">
+								<a class="nav-link waves-effect" data-toggle="tab" href="#snippet" role="tab"><i class="fa fa-heart"></i> Snippets</a>
+						</li>
+						<li class="nav-item">
+								<a class="nav-link waves-effect" data-toggle="tab" href="#tasks" role="tab"><i class="fa fa-envelope"></i> Task</a>
+						</li>
+				</ul>
 
-      <div class="row">
+				<!-- Tab panels -->
+				<div class="tab-content">
 
-        <!-- Details -->
-        <div class="col m3">
-          <table>
-            <th class="center-align">Description</th>
-            <tr>
-              <td class="center-align">{{ task.description }}</td>
-            </tr>
-            <th class="center-align">Created On</th>
-            <tr>
-              <td class="center-align">{{ task.created_at }}</td>
-            </tr>
-            <th class="center-align">Duration Spent</th>
-            <tr>
-              <td class="center-align">13 Hours</td>
-            </tr>
-            <th class="center-align">Category</th>
-            <tr>
-              <td class="center-align">
-                <div class="chip">Software</div>
-                <div class="chip">Work</div>
-                <div class="chip">Chemistry</div>
-                <div class="chip">Software</div>
-                <div class="chip">Work</div>
-                <div class="chip">Chemistry</div>
-              </td>
-            </tr>
-          </table>
-        </div>
+						<!--Panel (Timer)-->
+						<div class="tab-pane fade in active" id="timer" role="tabpanel">
+								<br>
 
-        <!-- Pomodoro -->
-        <div class="col m9 s12">
-          <ul class="tabs">
-            <li class="tab col m3"><a class="" href="#detail-timer-div">Timer</a></li>
-            <li class="tab col m3"><a class="active" href="#detail-note-div">Notes</a></li>
-            <li class="tab col m3"><a href="#detail-setting-div">Settings</a></li>
-          </ul>
-        </div>
-        <div id="detail-timer-div" class="col m9">
-          <!-- Timer -->
-          <div class="row">
-            <div class="col m6">
-              <div class="countdown-clock">
-                <h1 class="valign center-block center-align"><b>25:00</b></h1>
-              </div>
-            </div>
-            <div class="col m3">
-              <div class="valign center-block center-align">
-                <a id="play-btn" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">play_arrow</i></a>
-                <a id="stop-btn" class="btn-floating btn-large waves-effect waves-light red disabled"><i class="material-icons">stop</i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div id="detail-note-div" class="col m9">
+								<div class="">
+										<div class="row">
+												<div class="col-md-8">
+														<div class="text-xs-center">
+																<div id="instruction-container" class="hidden">
+																		<p>1) Adjust to your comfortable time</p>
+																		<p>2) click on <span class="btn-floating btn-small teal waves-effect"><i class=" fa fa-play"></i></span> to start the session</p>
+																</div>
+																<div id="time-container" class="">
+																	<h1 id="current_time"></h1>
+																	{{ duration }}
+																	<form method="POST">{% csrf_token %}
+																		{{ duration.as_p }}
+																	</form>
+																	<label id="minutes">00</label>:<label id="seconds">00</label>
+																</div>
+														</div>
+												</div>
+												<div class="col-md-4">
+													<div class="row">
+														<div class="text-xs-center">
+															<button id="start" class="btn btn-primary-outline btn-rounded waves-effect waves-blue" onclick="startTime()">Start</button>
+															<button id="stop" class="btn btn-danger-outline btn-rounded waves-effect" onclick="pauseTime()">Stop/Pause</button>
+														</div>
+													</div>
+													<hr class="section-divider">
+													<div class="row">
+														<div class="text-xs-center">
+															<h1>Time</h1>
+															<button id="add" class="btn-floating btn-small teal waves-effect"><i class="fa fa-plus"></i></button>
+															<button id="subtract" class="btn-floating btn-small red waves-effect"><i class="fa fa-minus"></i></button>
+															<h1><span id="select-number">0</span> minutes</h1>
+														</div>
+													</div>
+												</div>
+										</div>
+								</div>
+
+						</div>
+						<!--/.Panel (Timer)-->
+
+						<!--Panel (Snippets)-->
+						<div class="tab-pane fade in" id="snippet" role="tabpanel">
+								<br>
 
           <!-- Notes -->
-          <ul class="collapsible" data-collapsible="accordion">
-          {% for note in notes %}
+          <ul id="snippet_list" class="collapsible" data-collapsible="accordion">
+			{% for note in notes %}
             <li>
               <div class="collapsible-header">
                 <i class="material-icons">whatshot</i>
@@ -90,20 +95,16 @@
                         <a href="{{ note.url }}">{{ note.url }}</a>
                       </div>
                     {% endif %}
-
                   </div>
                 </div>
               </div>
             </li>
-          {% endfor %}
+			{% endfor %}
           </ul>
-          <form id="post-form" class="col m12" method="POST">{% csrf_token %}
+          <form id="snippet_form" class="col m12" method="POST">{% csrf_token %}
             <div class="row">
 
-              <div class="row">
-
-                <div class="input-field col s6">
-                  <i class="material-icons prefix">subject</i>
+              <div class="row"> <div class="input-field col s6"> <i class="material-icons prefix">subject</i>
                   <label for="last_name">Title</label>
                   {{ note_form.name }}
                 </div>
@@ -111,78 +112,152 @@
                 <div class="input-field col m12">
                   <i class="material-icons prefix">mode_edit</i>
                   <label for="description">Snippet</label>
-                  {{ note_form.note|add_class:"materialize-textarea" }}
+                  {{ note_form.note|add_class:"md-textarea" }}
                 </div>
 
               <div class="input-field col m12">
                   <i class="material-icons prefix">https</i>
-                  <label for="description">URLs</label>
-                  {{ note_form.url }}
+                  <!--<label for="description">URLs</label>-->
+									<span class="input-group-addon" id="basic-addon3">https://</span>
+                  {{ note_form.url|add_class:"form-control" }}
+									<!--<input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">-->
                 </div>
               </div> <!-- Row -->
 
-              <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                <i class="material-icons right">note_add</i>
-              </button>
+				<div class="text-xs-center">
+					<button id="submit_snippet" class="btn btn-elegant btn-rounded wavewaves-effect" type="submit" name="action" value="submit">Add Snippet</button>
+				</div>
             </div>
           </form>
-        </div>
-        <div id="detail-setting-div" class="col m9">
-          <!-- Settings -->
-          Settings
-        </div>
-    </div>
+
+						</div>
+						<!--/.Panel (Snippets)-->
+
+						<!--Panel (Tasks)-->
+						<div class="tab-pane fade" id="tasks" role="tabpanel">
+								<br>
+
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione porro voluptate odit minima.</p>
+
+						</div>
+						<!--/.Panel (Tasks)-->
+
+				</div>
+		</div>
+
+		<script src="{% static 'js/timer.js' %}"></script>
+		<script>
+//			$("document").on('submit', '#snippet_form', function(e) {
+		//	$("#submit_snippet").on('click', function(e) {
+
+				var minutesLabel = document.getElementById("minutes");
+				var secondsLabel = document.getElementById("seconds");
+				var totalSeconds = 0;
+				var durationInterval;
+
+				function setTime()
+				{
+					++totalSeconds;
+					secondsLabel.innerHTML = pad(totalSeconds%60);
+					minutesLabel.innerHTML = pad(parseInt(totalSeconds/60));
+				}
+
+				function startTime() {
+					durationInterval = setInterval(setTime, 1000);
+				}
+
+				function pauseTime()  {
+					clearInterval(durationInterval);
+				}
+
+				function pad(val)
+				{
+					var valString = val + "";
+					if(valString.length < 2)
+					{
+						return "0" + valString;
+					}
+					else
+					{
+						return valString;
+					}
+				}
 
 
-    </div>
 
-    <script>
-      $(document).ready(function() {
-        $('ul.tabs').tabs();
 
-        $('.collapsible').collapsible({
-          accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-        });
+			$('#snippet_form').on('submit', function(event){
+				event.preventDefault();
+				var name = $('#id_name').val();
+				var snippet = $('#id_note').val();
+				var url = $('#id_url').val();
+				var form = $('#snippet_form');
+				console.log("submit");
+				var href = $(this).attr('href'); //Referring the anchor object which is clicked
+				$.ajax({
+					type: 'POST',
+					url: href,
+					data: form.serialize(),
+					success: function(data) {
+						console.log("Created new snippet");
+						$("#snippet_list").prepend("<li><div class='collapsible-header'>\
+								<i class='material-icons'>whatshot</i>\
+								<b>"+name+"</b>\
+							</div>\
+							</li>"
+						);
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+					  alert(errorThrown);
+				    }
+				})
+			})
 
-      }) /* end of DOM */
+			$("document").ready(function() {
 
-      var query;
-      var n  = 100;
+				setInterval(function() {
+					currentTime = new Date();
+					$("#current_time").text(currentTime);
 
-      function countDown() {
-        if (n > 0) {
-          n--;
-          $(".time").text(n);
-        }
-      }
+					$("#duration").text();
+				}, 1000)
 
-      function play() {
-        $(".time").text(n);
-        query = setTimeout(function() {
-            countDown();
-            setTimeout(countDown, 1000);
-          })
-          console.log(n);
-      }
+				/* */
 
-      function stop() {
-        console.log("Timer stop");
-        clearTimeout(query);
-      }
+				var number = 0;
 
-      function countDown() {
+				$("#add").on('click', function() {
+					number += 5;
+					if (number > 60) {
+						number = 60;
+						$("#select-number").text(number);
+					}
+					else {
+						$("#select-number").text(number);
+					}
+				})
 
-      }
+				$("#subtract").on('click', function() {
+					number -= 5;
+					if (number < 0) {
+						number = 0;
+						$("#select-number").text(number);
+					}
+					else {
+						$("#select-number").text(number);
+					}
+				})
 
-      $("#play-btn").click(function() {
-        $(this).addClass("disabled");
-        $("#stop-btn").removeClass("disabled");
-      })
+				$("#start").on('click', function() {
+					$("#instruction-container").addClass('hidden');
+					$("#time-container").removeClass('hidden');
+					$("#time").time("start", number)
+				})
 
-      $("#stop-btn").click(function() {
-        $(this).addClass("disabled");
-        $("#play-btn").removeClass("disabled");
-      })
+				$("#stop").on('click', function() {
+					$("#time").time("stop", number)
+				})
+			})
+		</script>
 
-    </script>
 {% endblock %}

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
-from django.http import HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from django.views import generic
 from django.views.generic.edit import FormMixin
@@ -8,8 +8,8 @@ from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.views.generic import FormView
 
-from .models import Task, Note
-from .forms import TaskForm, NoteForm
+from .models import Task, Note, Duration
+from .forms import TaskForm, NoteForm, DurationForm
 
 @login_required
 def add_new_task(request):
@@ -58,11 +58,17 @@ class TaskDetailView(FormMixin, generic.DetailView):
     model = Task
     template_name="tasks/detail.html"
     form_class = NoteForm
+    form_class2 = DurationForm
+    form_classes = {
+        'noteform': NoteForm,
+        'durationform': DurationForm,
+    }
 
     def get_context_data(self, **kwargs):
         context = super(TaskDetailView, self).get_context_data(**kwargs)
         context['note_form'] = self.get_form()
         context['notes'] = Note.objects.filter(task__slug=self.kwargs['slug'])
+        context['duration'] = Duration.objects.all()
 
         return context
 
@@ -84,7 +90,6 @@ class TaskDetailView(FormMixin, generic.DetailView):
         self.object = form.save(commit=False)
         self.object.task =  current_task
         self.object.save()
-        return HttpResponseRedirect(self.get_success_url())
-        #return super(TaskDetailView, self).form_valid(form
+        return HttpResponse(self.get_success_url())
 
 
