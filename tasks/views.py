@@ -59,16 +59,13 @@ class TaskDetailView(FormMixin, generic.DetailView):
     template_name="tasks/detail.html"
     form_class = NoteForm
     form_class2 = DurationForm
-    form_classes = {
-        'noteform': NoteForm,
-        'durationform': DurationForm,
-    }
 
     def get_context_data(self, **kwargs):
         context = super(TaskDetailView, self).get_context_data(**kwargs)
         context['note_form'] = self.get_form()
         context['notes'] = Note.objects.filter(task__slug=self.kwargs['slug'])
-        context['duration'] = Duration.objects.all()
+        context['duration_form'] = self.form_class2()
+        context['duration'] = Duration.objects.filter(task__slug=self.kwargs['slug'])
 
         return context
 
@@ -91,5 +88,3 @@ class TaskDetailView(FormMixin, generic.DetailView):
         self.object.task =  current_task
         self.object.save()
         return HttpResponse(self.get_success_url())
-
-
