@@ -70,7 +70,7 @@ class TaskDetailView(FormMixin, generic.DetailView):
         context['notes'] = Note.objects.filter(task__slug=self.kwargs['slug'])
         # context['duration_form'] = self.form_class2()
         #context['duration'] = Duration.objects.filter(task__slug=self.kwargs['slug'])
-        context['duration'] = Duration.objects.all()
+        context['durations'] = Duration.objects.all()
         return context
 
     def get_success_url(self):
@@ -110,9 +110,10 @@ class TaskDetailView(FormMixin, generic.DetailView):
         """
         current_task = get_object_or_404(Task, slug=self.kwargs['slug'])
         self.object = form.save(commit=False)
-        self.object.task =  current_task
+        self.object.task = current_task
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
+        # return HttpResponse(self.get_success_url())
 
 
     def form_invalid(self, form):

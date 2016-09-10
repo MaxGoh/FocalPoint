@@ -33,15 +33,14 @@
 										<div class="row">
 												<div class="col-md-8">
 														<div class="text-xs-center">
-																<div id="instruction-container" class="hidden">
-																		<p>1) Adjust to your comfortable time</p>
-																		<p>2) click on <span class="btn-floating btn-small teal waves-effect"><i class=" fa fa-play"></i></span> to start the session</p>
+																<div id="instruction-container" class="">
+																	<label id="minutes">00</label>:<label id="seconds">00</label>
 																</div>
-																<div id="time-container" class="">
-																	<h1 id="current_time"></h1>
-																	{{ duration }}
-																	{{ duration.created_at }}
-																	{{ duration.name }}
+																<div id="time-container" class="hidden">
+																	{% for duration in durations %}
+																		{{ duration.total_second }}
+																		{{ duration.started_at }}
+																	{% endfor %}
 																	<form method="POST">{% csrf_token %}
 																		{{ duration_form }}
 
@@ -49,7 +48,6 @@
 																		<button id="submit_snippet" class="btn btn-elegant btn-rounded wavewaves-effect" type="submit" name="duration_form" value="submit">Add Duration</button>
 																	</div>
 																	</form>
-																	<label id="minutes">00</label>:<label id="seconds">00</label>
 																</div>
 														</div>
 												</div>
@@ -79,70 +77,81 @@
 						<!--Panel (Snippets)-->
 						<div class="tab-pane fade in" id="snippet" role="tabpanel">
 								<br>
+							<div class="container">
+							  <!-- Notes -->
+							  <ul id="snippet_list" class="collapsible" data-collapsible="accordion">
+								{% for note in notes %}
+								<li>
+								  <div class="collapsible-header">
+									<i class="material-icons">whatshot</i>
+									<b>{{ note.name }}</B>
+									<a href="{% url 'note_delete' pk=note.pk slug=task.slug %}" class="secondary-content"><i class="material-icons">delete</i></a>
+								  </div>
+								  <div class="collapsible-body">
+									<div class="collapsible-content">
+									  <div class="container">
+										<div class="note-content">
+										  {{ note.note }}
+										</div>
+										{% if note.url %}
+										  <hr>
+										  <div class="note-url">
+											<a href="{{ note.url }}">{{ note.url }}</a>
+										  </div>
+										{% endif %}
+									  </div>
+									</div>
+								  </div>
+								</li>
+								{% endfor %}
+							  </ul>
+							  <form id="snippet_form" class="col m12" method="POST">{% csrf_token %}
+								<div class="row">
 
-          <!-- Notes -->
-          <ul id="snippet_list" class="collapsible" data-collapsible="accordion">
-			{% for note in notes %}
-            <li>
-              <div class="collapsible-header">
-                <i class="material-icons">whatshot</i>
-                <b>{{ note.name }}</B>
-                <a href="{% url 'note_delete' pk=note.pk slug=task.slug %}" class="secondary-content"><i class="material-icons">delete</i></a>
-              </div>
-              <div class="collapsible-body">
-                <div class="collapsible-content">
-                  <div class="container">
-                    <div class="note-content">
-                      {{ note.note }}
-                    </div>
-                    {% if note.url %}
-                      <hr>
-                      <div class="note-url">
-                        <a href="{{ note.url }}">{{ note.url }}</a>
-                      </div>
-                    {% endif %}
-                  </div>
-                </div>
-              </div>
-            </li>
-			{% endfor %}
-          </ul>
-          <form id="snippet_form" class="col m12" method="POST">{% csrf_token %}
-            <div class="row">
+									  <div class="row"> <div class="input-field col s6"> <i class="material-icons prefix">subject</i>
+										  <label for="last_name">Title</label>
+										  {{ note_form.name }}
+										</div>
 
-              <div class="row"> <div class="input-field col s6"> <i class="material-icons prefix">subject</i>
-                  <label for="last_name">Title</label>
-                  {{ note_form.name }}
-                </div>
+										<div class="input-field col m12">
+										  <i class="material-icons prefix">mode_edit</i>
+										  <label for="description">Snippet</label>
+										  {{ note_form.note|add_class:"md-textarea" }}
+										</div>
 
-                <div class="input-field col m12">
-                  <i class="material-icons prefix">mode_edit</i>
-                  <label for="description">Snippet</label>
-                  {{ note_form.note|add_class:"md-textarea" }}
-                </div>
+									  <div class="input-field col m12">
+										  <i class="material-icons prefix">https</i>
+										  <!--<label for="description">URLs</label>-->
+															<span class="input-group-addon" id="basic-addon3">https://</span>
+										  {{ note_form.url|add_class:"form-control" }}
+															<!--<input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">-->
+										</div>
+									  </div> <!-- Row -->
 
-              <div class="input-field col m12">
-                  <i class="material-icons prefix">https</i>
-                  <!--<label for="description">URLs</label>-->
-									<span class="input-group-addon" id="basic-addon3">https://</span>
-                  {{ note_form.url|add_class:"form-control" }}
-									<!--<input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">-->
-                </div>
-              </div> <!-- Row -->
+										<div class="text-xs-center">
+											<button id="submit_snippet" class="btn btn-elegant btn-rounded wavewaves-effect" type="submit" name="note_form" value="submit">Add Snippet</button>
+										</div>
+									</div>
+								  </form>
 
-				<div class="text-xs-center">
-					<button id="submit_snippet" class="btn btn-elegant btn-rounded wavewaves-effect" type="submit" name="note_form" value="submit">Add Snippet</button>
-				</div>
-            </div>
-          </form>
-
+						</div>
 						</div>
 						<!--/.Panel (Snippets)-->
 <!--Panel (Tasks)-->
 						<div class="tab-pane fade" id="tasks" role="tabpanel">
-								<br>
+							<br>
 
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione porro voluptate odit minima.</p>
+							<div class="jumbotron">
+								<h1 class="h1-responsive"><b>{{ task }}<b></h1>
+								<h3 class="lead"><i>{{ task.description }}</i></h3>
+								<hr class="m-y-2">
+								<p>Created on <b>{{ task.created_at }}<b></p>
+								<p class="lead">
+									<div class="text-xs-center">
+										<a class="btn btn-primary btn-lg" href="{% url 'task_delete' slug=task.slug %}" class="link-text">Delete</a>
+									</div>
+								</p>
+							</div>
 
 						</div>
 						<!--/.Panel (Tasks)-->
@@ -255,8 +264,6 @@
 				})
 
 				$("#start").on('click', function() {
-					$("#instruction-container").addClass('hidden');
-					$("#time-container").removeClass('hidden');
 					$("#time").time("start", number)
 				})
 
