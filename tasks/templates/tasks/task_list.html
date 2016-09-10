@@ -1,22 +1,130 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block src %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/authenticated/task_list.css' %}">
+{% endblock %}
 
 {% block content %}
-    <div class="container">
-      <div class="row">
-      {% for task in task_list %}
-        <div class="col s6 m4 l3">
-          <div class="card blue-grey darken-1 hoverable small">
-            <div class="card-content white-text">
-              <span class="card-title truncate">{{ task.name|title }}</span>
-              <p class="">{{ task.description|title }}</p>
-            </div>
-            <div class="card-action">
-              <a href="{% url 'task_detail' slug=task.slug %}">Details</a>
-              <a href="{% url 'task_delete' slug=task.slug %}">Delete</a>
-            </div>
-          </div>
-        </div>
-      {% endfor %}
-      </div>
-    </div> <!-- Container -->
+    <!--Mask-->
+    <!--<div class="view hm-black-strong teal-text ">-->
+        <!--<div class="full-bg-img">-->
+
+			<!-- Ordering by favourite Tasks -->
+			<section class="margin">
+				<div class="container">
+					<h1 class="h1-responsive"><b>Favourites</b></h1>
+				  <div class="row">
+
+					<div class="col-sm-4">
+					  One of three columns
+					</div>
+
+					<div class="col-sm-4">
+					  One of three columns
+					</div>
+
+					<div class="col-sm-4">
+					  One of three columns
+					</div>
+
+				  </div>
+				</div>
+			</section>
+
+			<hr class="section-divider container">
+
+			<!-- Ordering by newest Tasks -->
+			<section class="teal-text">
+				<div class="container">
+					<h1 class="h1-responsive"><b>Latest</b></h1>
+					<div class="row">
+
+					{% for task in task_list %}
+
+					<div class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
+						<!--Card-->
+						<div class="card ovf-hidden">
+
+							<!--Card image-->
+							<!--<div class="view overlay hm-white-slight">-->
+								<!--<img src="http://mdbootstrap.com/images/reg/reg%20(60).jpg" class="img-fluid" alt="">-->
+								<!--<a>-->
+									<!--<div class="mask"></div>-->
+								<!--</a>-->
+							<!--</div>-->
+							<!--/.Card image-->
+
+							<!--Social shares button-->
+							<a class="activator"><i class="fa fa-share-alt"></i></a>
+
+							<!--Card content-->
+							<div class="card-block">
+								<!--Title-->
+								<h4 class="card-title h4-responsive">{{ task }}</h4>
+								<hr>
+								<!--Text-->
+								<p class="card-text">{{ task.description }}</p>
+								<a href="{% url 'task_detail' slug=task.slug %}" class="link-text"><h5>Details<i class="fa fa-chevron-right"></i></h5></a>
+							</div>
+							<!--/.Card content-->
+
+							<!--Card reveal-->
+							<div class="card-reveal">
+								<!--Content-->
+								<div class="content text-xs-center">
+
+									<h4 class="card-title">Social shares <i class="fa fa-close"></i></h4>
+									<hr>
+
+									<!--Social Icons-->
+									<ul class="inline-ul">
+										<li><a class="btn-floating btn-small btn-fb"><i class="fa fa-facebook"> </i></a></li>
+										<li><a class="btn-floating btn-small btn-tw"><i class="fa fa-twitter"> </i></a></li>
+										<li><a class="btn-floating btn-small btn-gplus"><i class="fa fa-google-plus"> </i></a></li>
+										<li><a class="btn-floating btn-small btn-li"><i class="fa fa-linkedin"> </i></a></li>
+										<li><a class="btn-floating btn-small btn-git"><i class="fa fa-github"> </i></a></li>
+										<li><a class="btn-floating btn-small btn-pin"><i class="fa fa-pinterest"> </i></a></li>
+										<li><a class="btn-floating btn-small btn-ins"><i class="fa fa-instagram"> </i></a></li>
+									</ul>
+
+									<h5>Join our community</h5>
+									<hr>
+
+									  <a href="{% url 'task_delete' slug=task.slug %}" class="link-text">Delete</a>
+
+									<!--Social Icons-->
+									<ul class="inline-ul">
+										<li><a class="btn btn-fb"><i class="fa fa-facebook"> </i></a></li>
+										<li><a class="btn btn-tw"><i class="fa fa-twitter"> </i></a></li>
+										<li><a class="btn btn-li"><i class="fa fa-linkedin"> </i></a></li>
+										<li><a class="btn btn-ins"><i class="fa fa-instagram"> </i></a></li>
+									</ul>
+
+								</div>
+								<!--/.Content-->
+
+							</div>
+							<!--/.Card reveal-->
+
+						</div>
+						<!--/.Card-->
+					</div>
+					{% endfor %}
+
+				  </div>
+
+				</div>
+			</section>
+
+        <!--</div>-->
+    <!--</div>-->
+    <!--/.Mask-->
+
+	<script>
+		$("document").ready(function() {
+			$('.button-collapse').sideNav('show');
+		})
+	</script>
+
 {% endblock %}

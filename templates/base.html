@@ -29,7 +29,6 @@
 
 <body>
 
-
 	<!-- SCRIPTS -->
 
     <!-- JQuery -->
@@ -48,8 +47,12 @@
         new WOW().init();
     </script>
 
+
 		{% if navbar == 'home' or navbar == 'contact' %}
 			{% include "includes/navbar-materialize.html" %}
+		{% else %}
+			{% include 'includes/navbar-authenticated.html' %}
+			{% include 'includes/sidenav.html' %}
 		{% endif %}
 
 		{% block content %}

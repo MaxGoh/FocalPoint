@@ -19,14 +19,12 @@ body,
     }
 }
 
-.full-bg-img {
-    color: #fff;
-}
-
 .view {
-    background: url("../../img/profile_landing.jpg")no-repeat center center fixed;
+    background: url("../../img/login_landing.jpg")no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 }
+
+

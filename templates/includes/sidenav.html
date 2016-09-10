@@ -1,0 +1,61 @@
+<!--Double navigation-->
+<header>
+	<!-- Sidebar navigation -->
+	<ul id="slide-out" class="side-nav elegant-color-dark">
+
+		<!-- Logo -->
+		<li>
+			<div class="logo-wrapper waves-light nav-profile-bg">
+				<a href="#"><img src="http://mdbootstrap.com/wp-content/uploads/2015/12/mdb-white2.png" class="img-fluid flex-center"></a>
+			</div>
+		</li>
+		<!--/. Logo -->
+
+		<!--Social-->
+		<li>
+			<ul class="social">
+				<li><a href="https://www.facebook.com/mdbootstrap" target="_blank" class="icons-sm fb-ic"><i class="fa fa-facebook"> </i></a></li>
+				<li><a class="icons-sm git-ic"><i class="fa fa-github"> </i></a></li>
+				<li><a href="https://www.linkedin.com/in/dawid-adach-97435534/pl" target="_blank" class="icons-sm li-ic"><i class="fa fa-linkedin"> </i></a></li>
+				<li><a class="icons-sm yt-ic"><i class="fa fa-youtube"> </i></a></li>
+				<li><a href="https://plus.google.com/u/0/+Mdbootstrap" target="_blank" class="icons-sm gplus-ic"><i class="fa fa-google-plus"> </i></a></li>
+			</ul>
+		</li>
+		<!--/Social-->
+
+		<!-- Side navigation links -->
+		<li>
+			<ul class="collapsible collapsible-accordion">
+									<ul>
+										<li><a href="{% url 'profile' %}" class="waves-effect">Profile</a>
+											</li>
+											<li><a href="{% url 'dashboard' %}" class="waves-effect">Dashboard</a>
+											<li><a href="{% url 'dashboard' %}" class="waves-effect">Task</a>
+											<li><a href="{% url 'dashboard' %}" class="waves-effect">Fitness</a>
+											<li><a href="{% url 'dashboard' %}" class="waves-effect">Finance</a>
+											</li>
+									</ul>
+				<li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-diamond"></i> Task<i class="fa fa-angle-down rotate-icon"></i></a>
+					<div class="collapsible-body">
+						<ul>
+														<li><a href="{% url 'add_task' %}" class="waves-effect">Add Task</a>
+							</li>
+															<li><a href="{% url 'task_list' %}" class="waves-effect">Task List</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</li>
+		<!--/. Side navigation links -->
+	</ul>
+	<!--/. Sidebar navigation -->
+
+</header>
+<!--/Double navigation-->
+
+<script>
+	// SideNav init
+	$(".button-sidenav").sideNav();
+</script>
+

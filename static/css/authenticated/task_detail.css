@@ -1,9 +1,6 @@
-html,
-body,
-.view {
-    height: 100%;
+html, body {
+	background: white;
 }
-/* Navigation*/
 
 .navbar {
     background-color: transparent;
@@ -19,14 +16,22 @@ body,
     }
 }
 
-.full-bg-img {
-    color: #fff;
-}
-
 .view {
-    background: url("../../img/profile_landing.jpg")no-repeat center center fixed;
+    background: url("../../img/login_landing.jpg")no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+.margin {
+	margin-top: 80px;
+}
+
+.teal-text {
+	color: #e0f2f1;
+}
+
+.hidden {
+	display: none;
 }
