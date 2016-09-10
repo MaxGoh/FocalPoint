@@ -39,6 +39,9 @@
 																</div>
 																<div id="time-container" class="">
 																	<h1 id="current_time"></h1>
+																	{{ duration }}
+																	{{ duration.created_at }}
+																	{{ duration.name }}
 																	<form method="POST">{% csrf_token %}
 																		{{ duration_form }}
 
@@ -128,7 +131,7 @@
               </div> <!-- Row -->
 
 				<div class="text-xs-center">
-					<button id="submit_snippet" class="btn btn-elegant btn-rounded wavewaves-effect" type="submit" name="action" value="submit">Add Snippet</button>
+					<button id="submit_snippet" class="btn btn-elegant btn-rounded wavewaves-effect" type="submit" name="action" value="">Add Snippet</button>
 				</div>
             </div>
           </form>

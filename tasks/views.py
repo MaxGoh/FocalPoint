@@ -65,15 +65,15 @@ class TaskDetailView(FormMixin, generic.DetailView):
         context['note_form'] = self.get_form()
         context['notes'] = Note.objects.filter(task__slug=self.kwargs['slug'])
         context['duration_form'] = self.form_class2()
-        context['duration'] = Duration.objects.filter(task__slug=self.kwargs['slug'])
-
+        #context['duration'] = Duration.objects.filter(task__slug=self.kwargs['slug'])
+        context['duration'] = Duration.objects.all()
         return context
 
     def get_success_url(self):
-        return reverse('task_detail', kwargs={'slug': self.kwargs['slug']})
+       return reverse('task_detail', kwargs={'slug': self.kwargs['slug']})
 
     def post(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
+        if not request.user.is_authenticated: 
             return HttpResponseForbidden
         self.object = self.get_object()
         form = self.get_form()

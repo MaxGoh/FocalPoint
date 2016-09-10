@@ -40,7 +40,7 @@ class Note(models.Model):
 
 class Duration(models.Model):
     task = models.ForeignKey(Task)
-    total_second = models.IntegerField();
+    total_second = models.IntegerField(blank=True);
     started_at = models.TimeField(auto_now_add=True, blank=True, null=True)
     end_at = models.TimeField(auto_now_add=True, blank=True, null=True)
 
